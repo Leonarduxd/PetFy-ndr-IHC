@@ -4,15 +4,15 @@ Bem-vindo ao repositório do **PetFy(ndr)**, uma aplicação web desenvolvida pa
 
 ## Sobre o Projeto
 
-O PetFy(ndr) foi concebido para atender à necessidade de um sistema eficiente que apoie abrigos na gestão de animais domésticos, conectando-os com pessoas interessadas em adoção ou em contribuir com doações. A plataforma permite que usuários busquem animais disponíveis com filtros específicos, realizem doações financeiras ou materiais e que administradores gerenciem cadastros e relatórios de forma prática e segura[1].
+O PetFy(ndr) foi concebido para atender à necessidade de um sistema eficiente que apoie abrigos na gestão de animais domésticos, conectando-os com pessoas interessadas em adoção ou em contribuir com doações. A plataforma permite que usuários busquem animais disponíveis com filtros específicos, realizem doações financeiras ou materiais e que administradores gerenciem cadastros e relatórios de forma prática e segura.
 
 ## Funcionalidades Principais
 
-- **Cadastro de Animais**: Abrigos verificados podem registrar informações detalhadas sobre os animais, como nome, idade, espécie, cor, raça e histórico veterinário[1].
+- **Cadastro de Animais**: Abrigos verificados podem registrar informações detalhadas sobre os animais, como nome, idade, espécie, cor, raça e histórico veterinário.
 - **Busca Personalizada**: Adotantes podem filtrar animais por espécie, idade e localização geográfica, facilitando a escolha do pet ideal.
 - **Gestão de Doações**: Registro de contribuições financeiras ou materiais, vinculadas a campanhas específicas ou necessidades gerais dos abrigos.
-- **Notificações Automáticas**: Envio de confirmações por e-mail sobre doações recebidas e novos animais disponíveis para adoção (com futura implementação de SMS)[1].
-- **Relatórios Administrativos**: Geração de relatórios sobre adoções realizadas e recursos recebidos, acessíveis aos administradores[1].
+- **Notificações Automáticas**: Envio de confirmações por e-mail sobre doações recebidas e novos animais disponíveis para adoção (com futura implementação de SMS).
+- **Relatórios Administrativos**: Geração de relatórios sobre adoções realizadas e recursos recebidos, acessíveis aos administradores.
 - **Integração com Mapas**: Uso da API do Google Maps para localizar abrigos próximos aos usuários.
 
 ## Tecnologias Utilizadas
