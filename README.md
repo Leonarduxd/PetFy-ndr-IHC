@@ -1,6 +1,6 @@
 # README - PetFy (NDR)
 
-Bem-vindo ao repositório do **PetFy (NDR)**, uma aplicação web desenvolvida para gerenciar animais domésticos em espera de adoção ou em necessidade de cuidados e doações. Este projeto visa facilitar a conexão entre adotantes, doadores e abrigos, centralizando informações e promovendo transparência na gestão de recursos. Abaixo, você encontrará detalhes sobre o propósito do projeto, suas funcionalidades principais, tecnologias utilizadas e instruções para configuração e contribuição.
+Bem-vindo ao repositório do **PetFy(ndr)**, uma aplicação web desenvolvida para gerenciar animais domésticos em espera de adoção ou em necessidade de cuidados e doações. Este projeto visa facilitar a conexão entre adotantes, doadores e abrigos, centralizando informações e promovendo transparência na gestão de recursos. Abaixo, você encontrará detalhes sobre o propósito do projeto, suas funcionalidades principais, tecnologias utilizadas e instruções para configuração e contribuição.
 
 ## Sobre o Projeto
 
