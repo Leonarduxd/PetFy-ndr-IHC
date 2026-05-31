@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFy - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho-logo">
+            <a href="index.html">
+                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+            </a>
+        </div>
+        <nav class="cabecalho-navegacao">
+            <ul class="menu">
+                <li><a href="index.html" class="menu-item ativo">Início</a></li>
+                <li><a href="#" class="menu-item">Adotar</a></li>
+                <li><a href="#" class="menu-item">Doações</a></li>
+                <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
+            </ul>
+        </nav>
+
+        <!-- AQUI COMEÇA A ÁREA DO USUÁRIO CORRIGIDA -->
+        <div class="area-usuario">
+            <img src="assets/foto perfil comum.png" alt="Perfil do Usuário" class="profile-pic">
+
+            <!-- Container que abraça o ícone e a lista para evitar o Trap -->
+            <div class="menu-container">
+                <div class="menu-icon">
+                    <img src="assets/simbolo menu hamburger.png" alt="Menu" style="width: 30px; cursor: pointer;">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <a href="index.html">Início</a>
+                        <a href="#">Conta</a>
+                        <a href="#">Relatórios</a>
+                        <a href="#" class="btn-sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- AQUI TERMINA A ÁREA DO USUÁRIO CORRIGIDA -->
+
+    </header>
+
+    <main class="conteudo-principal login-cadastro-main">
+        <div class="cadastro-container">
+            <!-- Coluna Esquerda: Login -->
+            <div class="cadastro-card">
+                <h2 class="cadastro-titulo">Login</h2>
+                <form action="#" class="cadastro-form">
+                    <div class="form-group">
+                        <label for="usuario" class="form-label">Usuário</label>
+                        <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required class="form-input">
+                    </div>
+                    <button type="submit" class="cadastro-btn">Entrar</button>
+                </form>
+                <p class="cadastro-footer-text">Não tem uma conta? <a href="login-cadastro.html" class="cadastro-link">Cadastre-se</a></p>
+            </div>
+            
+            <!-- Coluna Direita: Mensagem -->
+            <div class="cadastro-mensagem bg-textura-patas">
+                <h2 class="mensagem-titulo">Bem-vindo de volta!</h2>
+                <p class="mensagem-texto">Acesse sua conta para continuar acompanhando nossos animais e fazendo a diferença. Seu apoio transforma vidas no campus e além!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+                adoção e o cuidado animal.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

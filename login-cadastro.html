@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFy - Cadastro Unificado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho-logo">
+            <a href="index.html">
+                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+            </a>
+        </div>
+        <nav class="cabecalho-navegacao">
+            <ul class="menu">
+                <li><a href="index.html" class="menu-item ativo">Início</a></li>
+                <li><a href="#" class="menu-item">Adotar</a></li>
+                <li><a href="#" class="menu-item">Doações</a></li>
+                <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
+            </ul>
+        </nav>
+
+        <!-- AQUI COMEÇA A ÁREA DO USUÁRIO CORRIGIDA -->
+        <div class="area-usuario">
+            <img src="assets/foto perfil comum.png" alt="Perfil do Usuário" class="profile-pic">
+
+            <!-- Container que abraça o ícone e a lista para evitar o Trap -->
+            <div class="menu-container">
+                <div class="menu-icon">
+                    <img src="assets/simbolo menu hamburger.png" alt="Menu" style="width: 30px; cursor: pointer;">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <a href="index.html">Início</a>
+                        <a href="#">Conta</a>
+                        <a href="#">Relatórios</a>
+                        <a href="#" class="btn-sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- AQUI TERMINA A ÁREA DO USUÁRIO CORRIGIDA -->
+
+    </header>
+
+    <main class="conteudo-principal login-cadastro-main">
+        <div class="cadastro-container">
+            <!-- Coluna Esquerda: Cadastro -->
+            <div class="cadastro-card">
+                <h2 class="cadastro-titulo">Crie uma Conta</h2>
+                <form action="#" class="cadastro-form">
+                    <div class="form-group">
+                        <label for="nome" class="form-label">Nome de Usuário</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome de usuário" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmar-senha" class="form-label">Confirmar Senha</label>
+                        <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha" required class="form-input">
+                    </div>
+                    <button type="submit" class="cadastro-btn">Cadastrar</button>
+                </form>
+                <p class="cadastro-footer-text">Já tem uma conta? <a href="login.html" class="cadastro-link">Entre</a></p>
+            </div>
+            
+            <!-- Coluna Direita: Mensagem -->
+            <div class="cadastro-mensagem bg-textura-patas">
+                <h2 class="mensagem-titulo">Criar uma conta é rápido, fácil e gratuito!</h2>
+                <p class="mensagem-texto">Com a sua conta da PetFy você tem acesso ao site, sua ponte para uma adoção responsável. Cadastre-se e ajude a dar um novo começo para muitos animais resgatados por ONGs e protetores independentes!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+                adoção e o cuidado animal.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
