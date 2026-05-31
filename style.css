@@ -773,3 +773,185 @@ header {
         gap: 0.8rem;
     }
 }
+
+/* =========================================
+   VITRINE DE PETS (TELA INICIAL)
+   ========================================= */
+.index-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.boas-vindas-banner {
+    width: 100%;
+    text-align: center;
+    padding: 4rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--cor-branca);
+}
+
+.boas-vindas-titulo {
+    font-family: var(--fonte-titulos);
+    font-size: 2.5rem;
+    color: var(--cor-branca);
+    margin-bottom: 1rem;
+}
+
+.boas-vindas-subtitulo {
+    font-family: var(--fonte-textos);
+    font-size: 1.15rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.vitrine-pets-section {
+    width: 100%;
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carrossel-pets {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1.5rem 0.5rem;
+    /* Esconder barra de rolagem nativa */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE e Edge */
+}
+
+.carrossel-pets::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.pet-card {
+    background-color: var(--cor-branca);
+    border-radius: 20px;
+    width: 250px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(107, 66, 38, 0.12);
+}
+
+.pet-card-topo {
+    background-color: var(--cor-card-pet);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pet-card-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3.5px solid var(--cor-branca);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pet-card-corpo {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    position: relative;
+    flex-grow: 1;
+}
+
+.pet-detalhe {
+    font-family: var(--fonte-textos);
+    font-size: 0.95rem;
+    color: var(--cor-texto-escuro);
+    display: flex;
+    gap: 5px;
+    text-align: left;
+}
+
+.pet-detalhe-inline {
+    font-family: var(--fonte-textos);
+    font-size: 0.95rem;
+    color: var(--cor-texto-escuro);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+}
+
+.pet-label {
+    font-weight: 700;
+}
+
+.pet-valor {
+    font-weight: 400;
+}
+
+.circulo-vermifugado {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid var(--cor-preta);
+}
+
+.circulo-vermifugado.sim {
+    background-color: var(--cor-sucesso);
+}
+
+.circulo-vermifugado.nao {
+    background-color: var(--cor-branca);
+}
+
+.pet-card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.pet-btn-ver {
+    font-family: var(--fonte-titulos);
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    text-decoration: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 3px 6px rgba(205, 133, 63, 0.2);
+}
+
+.pet-btn-ver:hover {
+    background-color: #B87333;
+}
+
+.pet-btn-ver:active {
+    transform: scale(0.95);
+}
+
+/* Responsividade do Carrossel */
+@media (max-width: 768px) {
+    .boas-vindas-banner {
+        padding: 3rem 1.5rem;
+    }
+    .boas-vindas-titulo {
+        font-size: 2rem;
+    }
+    .vitrine-pets-section {
+        padding: 2rem 1rem;
+    }
+}
