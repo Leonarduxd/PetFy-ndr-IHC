@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFy - Doação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho-logo">
+            <a href="index.html">
+                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+            </a>
+        </div>
+        <nav class="cabecalho-navegacao">
+            <ul class="menu">
+                <li><a href="index.html" class="menu-item ativo">Início</a></li>
+                <li><a href="#" class="menu-item">Adotar</a></li>
+                <li><a href="#" class="menu-item">Doações</a></li>
+                <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
+            </ul>
+        </nav>
+
+        <!-- AQUI COMEÇA A ÁREA DO USUÁRIO CORRIGIDA -->
+        <div class="area-usuario">
+            <img src="assets/foto perfil comum.png" alt="Perfil do Usuário" class="profile-pic">
+
+            <!-- Container que abraça o ícone e a lista para evitar o Trap -->
+            <div class="menu-container">
+                <div class="menu-icon">
+                    <img src="assets/simbolo menu hamburger.png" alt="Menu" style="width: 30px; cursor: pointer;">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <a href="index.html">Início</a>
+                        <a href="#">Conta</a>
+                        <a href="#">Relatórios</a>
+                        <a href="login.html" class="btn-sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- AQUI TERMINA A ÁREA DO USUÁRIO CORRIGIDA -->
+
+    </header>
+
+    <main class="conteudo-principal doacao-main">
+        <!-- Banner Superior -->
+        <section class="doacao-banner bg-textura-patas">
+            <h1 class="doacao-banner-titulo">Ajude um pet a ter um futuro melhor</h1>
+            <p class="doacao-banner-subtitulo">Sua contribuição ajuda a alimentar, cuidar e dar uma nova chance aos animais resgatados. Com um pequeno gesto, você faz uma grande diferença.</p>
+        </section>
+
+        <!-- Container do Formulário -->
+        <div class="doacao-container">
+            <form action="#" class="doacao-form">
+                <!-- Abas -->
+                <div class="doacao-abas">
+                    <label class="aba-item">
+                        <input type="radio" name="tipo_doacao" value="mensal" class="aba-radio">
+                        <span class="aba-conteudo">Mensal</span>
+                    </label>
+                    <label class="aba-item">
+                        <input type="radio" name="tipo_doacao" value="unica" checked class="aba-radio">
+                        <span class="aba-conteudo">Unica Vez</span>
+                    </label>
+                </div>
+
+                <div class="doacao-card-corpo">
+                    <!-- Seção 1: Quantia Doada -->
+                    <div class="doacao-secao">
+                        <h3 class="doacao-secao-titulo">Quantia Doada</h3>
+                        <div class="form-group-full">
+                            <input type="text" name="quantia" placeholder="R$" required class="form-input-doacao input-quantia">
+                        </div>
+                    </div>
+
+                    <!-- Seção 2: Informações do Doador -->
+                    <div class="doacao-secao">
+                        <h3 class="doacao-secao-titulo">Informações do Doador</h3>
+                        <div class="doador-grid">
+                            <!-- Linha 1 -->
+                            <input type="text" name="primeiro_nome" placeholder="Primeiro Nome" required class="form-input-doacao grid-item-50">
+                            <input type="text" name="ultimo_nome" placeholder="Ultimo Nome" required class="form-input-doacao grid-item-50">
+                            
+                            <!-- Linha 2 -->
+                            <input type="email" name="email" placeholder="Email" required class="form-input-doacao grid-item-100">
+                            
+                            <!-- Linha 3 -->
+                            <input type="text" name="ddd" placeholder="DDD" required class="form-input-doacao grid-item-ddd">
+                            <input type="text" name="celular" placeholder="Numero de Celular" required class="form-input-doacao grid-item-celular">
+                            
+                            <!-- Linha 4 -->
+                            <select name="estado" required class="form-select-doacao grid-item-50">
+                                <option value="" disabled selected>Estado</option>
+                                <option value="PA">Pará</option>
+                                <option value="TO">Tocantins</option>
+                                <option value="MA">Maranhão</option>
+                            </select>
+                            <select name="cidade" required class="form-select-doacao grid-item-50">
+                                <option value="" disabled selected>Cidade</option>
+                                <option value="Marabá">Marabá</option>
+                                <option value="Belém">Belém</option>
+                                <option value="Imperatriz">Imperatriz</option>
+                            </select>
+                            
+                            <!-- Linha 5 -->
+                            <textarea name="mensagem" placeholder="Gostaria de falar algo? (Opcional)" class="form-textarea-doacao grid-item-100"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Seção 3: Forma de Pagamento -->
+                    <div class="doacao-secao">
+                        <h3 class="doacao-secao-titulo">Escolha a Forma de Pagamento</h3>
+                        <div class="pagamento-grid">
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="forma_pagamento" value="credito" checked>
+                                <span>Cartão de Crédito</span>
+                            </label>
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="forma_pagamento" value="boleto">
+                                <span>Boleto</span>
+                            </label>
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="forma_pagamento" value="debito">
+                                <span>Cartão de Débito</span>
+                            </label>
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="forma_pagamento" value="pix">
+                                <span>Pix</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Botão Final -->
+                    <button type="submit" class="doacao-btn-submit">Doar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+                adoção e o cuidado animal.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
