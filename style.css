@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    /* Paleta de Cores Oficial do Petfy */
+    --cor-fundo: #FCECCF;
+    /* Bege claro predominante no fundo */
+    --cor-primaria: #6B4226;
+    /* Marrom escuro (cabeçalho, rodapé, textos principais) */
+    --cor-secundaria: #CD853F;
+    /* Caramelo/Laranja dos botões e acentos */
+    --cor-card-pet: #A67B5B;
+    /* Marrom claro do fundo das fotos dos pets */
+
+    /* Cores de Suporte */
+    --cor-branca: #FFFFFF;
+    --cor-preta: #000000;
+    --cor-texto-escuro: #333333;
+    --cor-sucesso: #4CAF50;
+    /* Verde para o ícone de vermifugado */
+    --cor-erro: #F44336;
+
+    /* Tipografia */
+    --fonte-titulos: 'Fredoka', cursive;
+    /* Fonte lúdica e arredondada para a logo e cabeçalhos */
+    --fonte-textos: 'Inter', sans-serif;
+    /* Fonte limpa e legível para parágrafos e formulários */
+}
+
+/* Reset básico para os agentes não bagunçarem o layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #FFF5E1, var(--cor-fundo));
+    font-family: var(--fonte-textos);
+    color: var(--cor-texto-escuro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   CABEÇALHO & GRADIENTE
+   ========================================= */
+header {
+    background: linear-gradient(to right, #C08552, #D0AA89);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho-logo .logo-img {
+    height: 48px;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.cabecalho-logo .logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   NAVEGAÇÃO CENTRAL (Início, Adotar, etc.)
+   ========================================= */
+.cabecalho-navegacao .menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.cabecalho-navegacao .menu-item {
+    font-family: var(--fonte-titulos);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--cor-branca);
+    text-decoration: none;
+    transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.2s ease;
+    display: inline-block;
+    position: relative;
+    padding: 0.2rem 0;
+}
+
+.cabecalho-navegacao .menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--cor-secundaria);
+    transition: width 0.3s ease;
+}
+
+.cabecalho-navegacao .menu-item:hover::after,
+.cabecalho-navegacao .menu-item.ativo::after {
+    width: 100%;
+}
+
+.cabecalho-navegacao .menu-item:hover {
+    color: var(--cor-secundaria);
+    transform: translateY(-2px);
+}
+
+.cabecalho-navegacao .menu-item.ativo {
+    color: var(--cor-secundaria);
+}
+
+/* =========================================
+   FOTO DE PERFIL E INTERAÇÃO
+   ========================================= */
+.area-usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--cor-branca);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.profile-pic:hover {
+    transform: translateY(-5px);
+}
+
+/* =========================================
+   MENU DROPDOWN (ANTI-HOVER TRAP)
+   ========================================= */
+.menu-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.menu-icon {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon img {
+    transition: transform 0.2s ease;
+}
+
+.menu-container:hover .menu-icon img {
+    transform: scale(1.1);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding-top: 20px;
+    /* A PONTE INVISÍVEL */
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.menu-container:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-content {
+    background-color: var(--cor-card-pet);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-content a {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--cor-branca);
+    /* Ajustado para branco para contraste com o caramelo */
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.dropdown-content a.btn-sair {
+    background-color: #D9534F;
+    color: white;
+}
+
+.dropdown-content a.btn-sair:hover {
+    background-color: #C9302C;
+}
+
+/* =========================================
+   UTILITÁRIO TEXTURA PATAS E CONTEÚDO
+   ========================================= */
+.bg-textura-patas {
+    background-color: var(--cor-primaria);
+    background-image: url('assets/textura patas.png');
+    background-repeat: repeat;
+    background-size: 250px;
+    background-blend-mode: soft-light;
+}
+
+.conteudo-principal {
+    flex: 1;
+}
+
+/* =========================================
+   RODAPÉ
+   ========================================= */
+.rodape {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-radius: 35px 35px 0 0;
+    box-shadow: 0 -4px 15px rgba(107, 66, 38, 0.1);
+    margin-top: auto;
+}
+
+.rodape-conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rodape-texto {
+    font-family: var(--fonte-textos);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================================
+   PÁGINA QUEM SOMOS
+   ========================================= */
+.quem-somos-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 3rem auto;
+    color: var(--cor-branca);
+    padding: 3.5rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 36px rgba(107, 66, 38, 0.2);
+    font-family: var(--fonte-textos);
+    line-height: 1.8;
+}
+
+.quem-somos-titulo-principal {
+    font-family: var(--fonte-titulos);
+    font-size: 2.8rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.quem-somos-titulo-principal::after {
+    content: '🐾';
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+.quem-somos-secao {
+    margin-bottom: 2.5rem;
+}
+
+.quem-somos-secao h2 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.6rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.6rem;
+}
+
+.quem-somos-secao p {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    text-align: justify;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.quem-somos-secao.final {
+    margin-bottom: 0;
+}
+
+.quem-somos-secao.final p {
+    margin-bottom: 0;
+    border-left: 4px solid var(--cor-secundaria);
+    padding-left: 1.5rem;
+    font-style: italic;
+}
+
+.quem-somos-lista {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.8rem 0;
+}
+
+.quem-somos-lista li {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    padding-left: 2.5rem;
+    position: relative;
+}
+
+.quem-somos-lista li::before {
+    content: '🐾';
+    position: absolute;
+    left: 0.5rem;
+    top: 2px;
+    font-size: 1.1rem;
+    color: var(--cor-secundaria);
+}
+
+.quem-somos-lista li strong {
+    color: var(--cor-secundaria);
+    font-family: var(--fonte-titulos);
+    font-size: 1.15rem;
+    margin-right: 0.3rem;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 768px) {
+    .cabecalho {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cabecalho-navegacao .menu {
+        gap: 1.5rem;
+    }
+
+    .quem-somos-container {
+        padding: 2.5rem 1.5rem;
+        border-radius: 16px;
+    }
+}
