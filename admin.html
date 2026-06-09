@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFy - Painel de Administração</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho-logo">
+            <a href="index.html">
+                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+            </a>
+        </div>
+        <nav class="cabecalho-navegacao">
+            <ul class="menu">
+                <li><a href="index.html" class="menu-item">Início</a></li>
+                <li><a href="doacao.html" class="menu-item">Doações</a></li>
+                <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
+            </ul>
+        </nav>
+        <div class="area-usuario">
+            <img src="assets/foto perfil comum.png" alt="Perfil do Usuário" class="profile-pic">
+            <div class="menu-container">
+                <div class="menu-icon">
+                    <img src="assets/simbolo menu hamburger.png" alt="Menu" style="width: 30px; cursor: pointer;">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <a href="index.html">Início</a>
+                        <a href="#">Conta</a>
+                        <a href="#">Relatórios</a>
+                        <a href="login.html" class="btn-sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="conteudo-principal admin-main">
+        <h1 class="admin-titulo-principal">Painel de Administração</h1>
+
+        <section class="admin-card">
+            <h2 class="admin-card-titulo">Cadastrar Novo Animal</h2>
+            <form class="admin-form" action="#" method="POST">
+                <div class="form-group-admin">
+                    <label for="nome" class="form-label-admin">Nome</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite o nome do animal" class="form-input-admin">
+                </div>
+                <div class="form-group-admin">
+                    <label for="especie" class="form-label-admin">Espécie</label>
+                    <select id="especie" name="especie" required class="form-select-admin">
+                        <option value="" disabled selected>Selecione a espécie</option>
+                        <option value="Cachorro">Cachorro</option>
+                        <option value="Gato">Gato</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group-admin">
+                    <label for="genero" class="form-label-admin">Gênero</label>
+                    <select id="genero" name="genero" required class="form-select-admin">
+                        <option value="" disabled selected>Selecione o gênero</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Fêmea">Fêmea</option>
+                    </select>
+                </div>
+                <div class="form-group-admin">
+                    <label for="cor" class="form-label-admin">Cor</label>
+                    <input type="text" id="cor" name="cor" required placeholder="Digite a cor do animal" class="form-input-admin">
+                </div>
+                <div class="form-group-admin">
+                    <label for="vermifugado" class="form-label-admin">Vermifugado</label>
+                    <select id="vermifugado" name="vermifugado" required class="form-select-admin">
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </div>
+                <div class="form-group-admin">
+                    <label for="imagem" class="form-label-admin">Link da Imagem</label>
+                    <input type="text" id="imagem" name="imagem" required placeholder="Ex: assets/foto animal 1.png" class="form-input-admin">
+                </div>
+                <div class="form-group-admin-btn">
+                    <button type="submit" class="admin-btn-salvar">Salvar Pet</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="admin-tabela-container">
+            <h2 class="admin-tabela-titulo">Lista de Pets Ativos</h2>
+            <table class="admin-tabela">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Espécie</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img src="assets/foto animal 1.png" alt="Foto de Pipa" class="admin-tabela-img"></td>
+                        <td>Pipa</td>
+                        <td>Cachorro</td>
+                        <td><span class="status-badge ativo">Ativo</span></td>
+                        <td><button type="button" class="admin-btn-excluir">Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img src="assets/foto animal 2.png" alt="Foto de Simão" class="admin-tabela-img"></td>
+                        <td>Simão</td>
+                        <td>Gato</td>
+                        <td><span class="status-badge ativo">Ativo</span></td>
+                        <td><button type="button" class="admin-btn-excluir">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a adoção e o cuidado animal.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

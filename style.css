@@ -1332,3 +1332,232 @@ header {
         text-align: center;
     }
 }
+
+/* =========================================
+   PÁGINA ADMIN (admin.html)
+   ========================================= */
+.admin-main {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.admin-titulo-principal {
+    font-family: var(--fonte-titulos);
+    font-size: 2.5rem;
+    color: var(--cor-primaria);
+    margin: 0;
+}
+
+.admin-card {
+    background-color: var(--cor-branca);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.admin-card-titulo {
+    font-family: var(--fonte-titulos);
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #EADDC9;
+    padding-bottom: 0.5rem;
+}
+
+.admin-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.form-group-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group-admin-btn {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.form-label-admin {
+    font-family: var(--fonte-textos);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--cor-texto-escuro);
+}
+
+.form-input-admin,
+.form-select-admin {
+    font-family: var(--fonte-textos);
+    padding: 0.8rem 1rem;
+    border: 2px solid #E0D5C1;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #FAF6EE;
+    color: var(--cor-texto-escuro);
+    width: 100%;
+}
+
+.form-input-admin:focus,
+.form-select-admin:focus {
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 3px rgba(205, 133, 63, 0.2);
+}
+
+.admin-btn-salvar {
+    font-family: var(--fonte-titulos);
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    border-radius: 10px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.admin-btn-salvar:hover {
+    background-color: #B87333;
+}
+
+.admin-btn-salvar:active {
+    transform: scale(0.98);
+}
+
+/* Tabela de Pets */
+.admin-tabela-container {
+    background-color: var(--cor-branca);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.admin-tabela-titulo {
+    font-family: var(--fonte-titulos);
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #EADDC9;
+    padding-bottom: 0.5rem;
+}
+
+.admin-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--fonte-textos);
+    text-align: left;
+}
+
+.admin-tabela th,
+.admin-tabela td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid #FAF6EE;
+    vertical-align: middle;
+}
+
+.admin-tabela th {
+    background-color: #FAF6EE;
+    color: var(--cor-primaria);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.admin-tabela td {
+    color: var(--cor-texto-escuro);
+    font-size: 0.95rem;
+}
+
+.admin-tabela tr:hover td {
+    background-color: #FCF9F3;
+}
+
+.admin-tabela-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cor-secundaria);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-badge.ativo {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: var(--cor-sucesso);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.admin-btn-excluir {
+    font-family: var(--fonte-titulos);
+    background-color: var(--cor-erro);
+    color: var(--cor-branca);
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.admin-btn-excluir:hover {
+    background-color: #D32F2F;
+}
+
+.admin-btn-excluir:active {
+    transform: scale(0.95);
+}
+
+/* Responsividade Admin */
+@media (max-width: 768px) {
+    .admin-main {
+        padding: 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .admin-card,
+    .admin-tabela-container {
+        padding: 1.5rem;
+    }
+
+    .admin-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group-admin-btn {
+        grid-column: span 1;
+    }
+
+    .admin-btn-salvar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .admin-tabela-container {
+        overflow-x: auto;
+    }
+
+    .admin-tabela th,
+    .admin-tabela td {
+        padding: 0.8rem;
+    }
+}
