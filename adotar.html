@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFy - Adotar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho-logo">
+            <a href="index.html">
+                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+            </a>
+        </div>
+        <nav class="cabecalho-navegacao">
+            <ul class="menu">
+                <li><a href="index.html" class="menu-item">Início</a></li>
+                <li><a href="adotar.html" class="menu-item ativo">Adotar</a></li>
+                <li><a href="doacao.html" class="menu-item">Doações</a></li>
+                <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
+            </ul>
+        </nav>
+        <div class="area-usuario">
+            <img src="assets/foto perfil comum.png" alt="Perfil do Usuário" class="profile-pic">
+            <div class="menu-container">
+                <div class="menu-icon">
+                    <img src="assets/simbolo menu hamburger.png" alt="Menu" style="width: 30px; cursor: pointer;">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <a href="index.html">Início</a>
+                        <a href="#">Conta</a>
+                        <a href="#">Relatórios</a>
+                        <a href="login.html" class="btn-sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="conteudo-principal adotar-main">
+        <!-- Seção de Filtros (O Hub) -->
+        <section class="secao-filtros">
+            <form class="filtros-form" action="#" method="GET">
+                <div class="filtro-campo">
+                    <label for="filtro-especie" class="filtro-label">Espécie</label>
+                    <select id="filtro-especie" name="especie" class="filtro-select">
+                        <option value="" disabled selected>Espécie</option>
+                        <option value="caes">Cães</option>
+                        <option value="gatos">Gatos</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <div class="filtro-campo">
+                    <label for="filtro-abrigo" class="filtro-label">ONG / Abrigo</label>
+                    <select id="filtro-abrigo" name="abrigo" class="filtro-select">
+                        <option value="" disabled selected>ONG / Abrigo</option>
+                        <option value="sao-francisco">Abrigo São Francisco</option>
+                        <option value="independentes">Protetores Independentes</option>
+                        <option value="todas">Todas</option>
+                    </select>
+                </div>
+                <div class="filtro-campo">
+                    <label for="filtro-localizacao" class="filtro-label">Localização</label>
+                    <select id="filtro-localizacao" name="localizacao" class="filtro-select">
+                        <option value="" disabled selected>Localização</option>
+                        <option value="zona-sul">Zona Sul</option>
+                        <option value="zona-norte">Zona Norte</option>
+                        <option value="centro">Centro</option>
+                    </select>
+                </div>
+                <button type="submit" class="filtro-btn">Filtrar</button>
+            </form>
+        </section>
+
+        <!-- Seção da Grade de Pets (O Catálogo) -->
+        <section class="grade-pets">
+            <!-- Card 1: Pipa -->
+            <article class="pet-card">
+                <div class="pet-card-topo">
+                    <img src="assets/foto animal 1.png" alt="Foto de Pipa" class="pet-card-img">
+                </div>
+                <div class="pet-card-corpo">
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Cachorro</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Fêmea</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Cor:</span> <span class="pet-valor">Preto</span>
+                    </div>
+                    <div class="pet-detalhe-inline">
+                        <span class="pet-label">Vermifugado:</span>
+                        <span class="pet-valor">Sim</span>
+                        <span class="circulo-vermifugado sim"></span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Nome:</span> <span class="pet-valor">Pipa</span>
+                    </div>
+                    <p class="pet-resgatado-por">Resgatado por: <em>Abrigo São Francisco</em></p>
+                    <div class="pet-card-footer">
+                        <a href="#" class="pet-btn-ver">Ver</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2: Simão -->
+            <article class="pet-card">
+                <div class="pet-card-topo">
+                    <img src="assets/foto animal 2.png" alt="Foto de Simão" class="pet-card-img">
+                </div>
+                <div class="pet-card-corpo">
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Gato</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Macho</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Cor:</span> <span class="pet-valor">Cinza</span>
+                    </div>
+                    <div class="pet-detalhe-inline">
+                        <span class="pet-label">Vermifugado:</span>
+                        <span class="pet-valor">Sim</span>
+                        <span class="circulo-vermifugado sim"></span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Nome:</span> <span class="pet-valor">Simão</span>
+                    </div>
+                    <p class="pet-resgatado-por">Resgatado por: <em>Protetores Independentes</em></p>
+                    <div class="pet-card-footer">
+                        <a href="#" class="pet-btn-ver">Ver</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3: G. do C2 -->
+            <article class="pet-card">
+                <div class="pet-card-topo">
+                    <img src="assets/foto animal 3.png" alt="Foto de G. do C2" class="pet-card-img">
+                </div>
+                <div class="pet-card-corpo">
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Gato</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Macho</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Cor:</span> <span class="pet-valor">Amarelo / Laranja</span>
+                    </div>
+                    <div class="pet-detalhe-inline">
+                        <span class="pet-label">Vermifugado:</span>
+                        <span class="pet-valor">Não</span>
+                        <span class="circulo-vermifugado nao"></span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Nome:</span> <span class="pet-valor">G. do C2</span>
+                    </div>
+                    <p class="pet-resgatado-por">Resgatado por: <em>Abrigo São Francisco</em></p>
+                    <div class="pet-card-footer">
+                        <a href="#" class="pet-btn-ver">Ver</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4: Mana -->
+            <article class="pet-card">
+                <div class="pet-card-topo">
+                    <img src="assets/foto animal 4.png" alt="Foto de Mana" class="pet-card-img">
+                </div>
+                <div class="pet-card-corpo">
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Cachorro</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Fêmea</span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Cor:</span> <span class="pet-valor">Marrom e Branco</span>
+                    </div>
+                    <div class="pet-detalhe-inline">
+                        <span class="pet-label">Vermifugado:</span>
+                        <span class="pet-valor">Sim</span>
+                        <span class="circulo-vermifugado sim"></span>
+                    </div>
+                    <div class="pet-detalhe">
+                        <span class="pet-label">Nome:</span> <span class="pet-valor">Mana</span>
+                    </div>
+                    <p class="pet-resgatado-por">Resgatado por: <em>Protetores Independentes</em></p>
+                    <div class="pet-card-footer">
+                        <a href="#" class="pet-btn-ver">Ver</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+                adoção e o cuidado animal.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

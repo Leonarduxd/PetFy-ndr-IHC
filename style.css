@@ -978,3 +978,357 @@ header {
         /* Para não atrapalhar o clique do usuário */
     }
 }
+
+/* =========================================
+   PÁGINA ADOTAR (CATÁLOGO DE PETS)
+   ========================================= */
+.adotar-main {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* Seção de Filtros */
+.secao-filtros {
+    background-color: var(--cor-branca);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.filtros-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.filtro-campo {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filtro-label {
+    font-family: var(--fonte-textos);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--cor-texto-escuro);
+}
+
+.filtro-select {
+    font-family: var(--fonte-textos);
+    padding: 0.8rem 1rem;
+    border: 2px solid #E0D5C1;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #FAF6EE;
+    color: var(--cor-texto-escuro);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cd853f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    padding-right: 2.5rem;
+}
+
+.filtro-select:focus {
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 3px rgba(205, 133, 63, 0.2);
+}
+
+.filtro-btn {
+    font-family: var(--fonte-titulos);
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(205, 133, 63, 0.2);
+}
+
+.filtro-btn:hover {
+    background-color: #B87333;
+}
+
+.filtro-btn:active {
+    transform: scale(0.98);
+}
+
+/* Seção da Grade de Pets */
+.grade-pets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.pet-resgatado-por {
+    font-family: var(--fonte-textos);
+    font-size: 0.85rem;
+    color: #888888;
+    margin-top: 0.5rem;
+    text-align: left;
+}
+
+.pet-resgatado-por em {
+    font-style: italic;
+    color: var(--cor-texto-escuro);
+    font-weight: 500;
+}
+
+/* Responsividade de Adotar */
+@media (max-width: 768px) {
+    .adotar-main {
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .secao-filtros {
+        padding: 1.5rem;
+    }
+
+    .filtros-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .filtro-campo {
+        min-width: 100%;
+    }
+
+    .filtro-btn {
+        width: 100%;
+    }
+
+    /* CSS do Catálogo Hub (Adotar) */
+    .secao-filtros {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: var(--cor-branca);
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .filtros-form {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .grade-pets {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* =========================================
+   PÁGINA PERFIL DO PET (perfil-pet.html)
+   ========================================= */
+.pet-perfil-main {
+    padding: 3rem 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pet-perfil-container {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    background-color: var(--cor-branca);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Coluna Esquerda */
+.pet-perfil-col-esquerda {
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.pet-perfil-img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+/* Coluna Direita */
+.pet-perfil-col-direita {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pet-perfil-nome {
+    font-family: var(--fonte-titulos);
+    font-size: 3rem;
+    color: var(--cor-primaria);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.pet-perfil-resgate {
+    font-family: var(--fonte-textos);
+    font-size: 1.1rem;
+    color: var(--cor-texto-escuro);
+    background-color: #FAF6EE;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    align-self: flex-start;
+    border: 1px solid #E0D5C1;
+}
+
+.pet-perfil-resgate strong {
+    color: var(--cor-secundaria);
+    font-weight: 700;
+}
+
+.pet-perfil-grade {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    padding: 1.5rem;
+    background-color: #FAF6EE;
+    border-radius: 12px;
+    border: 1px solid #E0D5C1;
+}
+
+.perfil-detalhe {
+    font-family: var(--fonte-textos);
+    font-size: 1rem;
+    color: var(--cor-texto-escuro);
+    display: flex;
+    gap: 5px;
+}
+
+.perfil-detalhe-inline {
+    font-family: var(--fonte-textos);
+    font-size: 1rem;
+    color: var(--cor-texto-escuro);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pet-perfil-historia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.historia-titulo {
+    font-family: var(--fonte-titulos);
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    margin: 0;
+}
+
+.historia-texto {
+    font-family: var(--fonte-textos);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--cor-texto-escuro);
+    margin: 0;
+}
+
+.pet-perfil-btn-adotar {
+    font-family: var(--fonte-titulos);
+    background-color: var(--cor-sucesso);
+    color: var(--cor-branca);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    align-self: flex-start;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+    margin-top: 1rem;
+}
+
+.pet-perfil-btn-adotar:hover {
+    background-color: #43A047;
+}
+
+.pet-perfil-btn-adotar:active {
+    transform: scale(0.98);
+}
+
+/* Responsividade do Perfil */
+@media (max-width: 768px) {
+    .pet-perfil-main {
+        padding: 2rem 1rem;
+    }
+
+    .pet-perfil-container {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .pet-perfil-col-esquerda {
+        width: 100%;
+    }
+
+    .pet-perfil-img {
+        max-width: 100%;
+    }
+
+    .pet-perfil-col-direita {
+        width: 100%;
+    }
+
+    .pet-perfil-nome {
+        font-size: 2.2rem;
+    }
+
+    .pet-perfil-grade {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .pet-perfil-btn-adotar {
+        width: 100%;
+        text-align: center;
+    }
+}
