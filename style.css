@@ -365,7 +365,8 @@ header {
     justify-content: center;
     align-items: center;
     padding: 3.5rem 1.5rem;
-    min-height: calc(100vh - 180px); /* Garante que ocupe a maior parte da altura disponível */
+    min-height: calc(100vh - 180px);
+    /* Garante que ocupe a maior parte da altura disponível */
 }
 
 .cadastro-container {
@@ -446,7 +447,8 @@ header {
 }
 
 .cadastro-btn:hover {
-    background-color: #B87333; /* Caramelo mais escuro para hover premium */
+    background-color: #B87333;
+    /* Caramelo mais escuro para hover premium */
 }
 
 .cadastro-btn:active {
@@ -462,7 +464,8 @@ header {
 }
 
 .cadastro-link {
-    color: #1A365D; /* Azul escuro */
+    color: #1A365D;
+    /* Azul escuro */
     font-weight: bold;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -579,7 +582,8 @@ header {
     font-weight: 600;
     transition: all 0.3s ease;
     gap: 8px;
-    background-color: #F3F4F6; /* Cinza claro */
+    background-color: #F3F4F6;
+    /* Cinza claro */
     color: #4B5563;
     user-select: none;
 }
@@ -749,25 +753,31 @@ header {
     .doacao-banner {
         padding: 3rem 1.5rem;
     }
+
     .doacao-banner-titulo {
         font-size: 2rem;
     }
+
     .doacao-container {
         margin: 1.5rem auto;
         border-radius: 0;
     }
+
     .doacao-card-corpo {
         padding: 1.5rem;
         gap: 2rem;
     }
+
     .doador-grid {
         gap: 1rem;
     }
+
     .grid-item-50,
     .grid-item-ddd,
     .grid-item-celular {
         grid-column: span 12;
     }
+
     .pagamento-grid {
         grid-template-columns: 1fr;
         gap: 0.8rem;
@@ -822,12 +832,15 @@ header {
     scroll-behavior: smooth;
     padding: 1.5rem 0.5rem;
     /* Esconder barra de rolagem nativa */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE e Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE e Edge */
 }
 
 .carrossel-pets::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .pet-card {
@@ -948,10 +961,20 @@ header {
     .boas-vindas-banner {
         padding: 3rem 1.5rem;
     }
+
     .boas-vindas-titulo {
         font-size: 2rem;
     }
+
     .vitrine-pets-section {
         padding: 2rem 1rem;
+    }
+
+    /* CSS para os mascotes decorativos nas telas */
+    .mascote-decorativo {
+        position: absolute;
+        z-index: 10;
+        pointer-events: none;
+        /* Para não atrapalhar o clique do usuário */
     }
 }
