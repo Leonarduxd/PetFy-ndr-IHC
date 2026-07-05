@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Sua conexão com o banco (mantenha a senha que você usou!) [cite: 63]
+// Conexão com o banco (mantenha a senha que você usou!) [cite: 63]
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -23,7 +23,7 @@ connection.connect((erro) => {
 });
 
 // ==========================================
-// 🚀 NOSSAS ROTAS MÁGICAS COMEÇAM AQUI
+// 🚀 ROTAS MÁGICAS COMEÇAM AQUI
 // ==========================================
 
 // Rota 1: LISTAR PETS (O que vai mostrar os animais pro usuário Adotante)
@@ -69,7 +69,7 @@ app.post('/pets', (req, res) => {
 });
 
 
-// Rota 3: ATUALIZAR STATUS DO PET (O método atualizarStatus do seu diagrama!)
+// Rota 3: ATUALIZAR STATUS DO PET (O método atualizarStatus do diagrama!)
 app.put('/pets/:id', (req, res) => {
     const idPet = req.params.id;
     const { status } = req.body;
