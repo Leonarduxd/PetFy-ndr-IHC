@@ -19,7 +19,7 @@ connection.connect((erro) => {
         console.error('Tivemos um problema ao conectar no banco:', erro);
         return;
     }
-    console.log('Banco de dados Petfy conectado com sucesso!');
+    console.log('Banco de dados PetFy(ndr) conectado com sucesso!');
 });
 
 // ==========================================
@@ -37,28 +37,37 @@ app.get('/pets', (req, res) => {
     });
 });
 
-// Rota 2: CADASTRAR PETS (O que o Administrador faz no sistema) [cite: 91]
+// Rota 2: CADASTRAR PETS (O que o Administrador faz no sistema)
 app.post('/pets', (req, res) => {
-    const { especie, raca, cor, idade, personalidade } = req.body;
+    const { nome, especie, genero, raca, cor, idade, vermifugado, personalidade, imagem, status } = req.body;
 
-    // QUIRK FIX: Validação minuciosamente detalhada (Heurística 5) 
+    // Validação: campos obrigatórios
     if (!especie || !cor) {
         return res.status(400).json({
             erro: "Atenção: Os campos 'especie' e 'cor' são obrigatórios!"
         });
     }
 
-    const query = 'INSERT INTO Pet (especie, raca, cor, idade, personalidade) VALUES (?, ?, ?, ?, ?)';
-    connection.query(query, [especie, raca, cor, idade, personalidade], (erro, resultados) => {
-        if (erro) {
-            return res.status(500).json({ erro: 'Erro ao salvar o pet!' });
+    const statusFinal = status || 'Disponível';
+
+    const query = `INSERT INTO Pet (nome, especie, genero, raca, cor, idade, vermifugado, personalidade, imagem, status)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    connection.query(
+        query,
+        [nome || null, especie, genero || null, raca || null, cor, idade || null, vermifugado || null, personalidade || null, imagem || null, statusFinal],
+        (erro, resultados) => {
+            if (erro) {
+                console.error('Erro ao salvar pet:', erro);
+                return res.status(500).json({ erro: 'Erro ao salvar o pet! Verifique se todas as colunas existem na tabela.' });
+            }
+            res.status(201).json({
+                mensagem: 'Pet cadastrado com sucesso!',
+                id_novo_pet: resultados.insertId
+            });
         }
-        res.status(201).json({
-            mensagem: 'Pet cadastrado com sucesso!',
-            id_novo_pet: resultados.insertId
-        });
-    });
+    );
 });
+
 
 // Rota 3: ATUALIZAR STATUS DO PET (O método atualizarStatus do seu diagrama!)
 app.put('/pets/:id', (req, res) => {

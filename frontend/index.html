@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Encontre seu novo melhor amigo</title>
+    <title>PetFy(ndr) - Encontre seu novo melhor amigo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -33,10 +33,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="login.html" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -62,6 +59,9 @@
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
 
     <script>
         const slider = document.querySelector('.carrossel-pets');
@@ -92,45 +92,51 @@
         });
     </script>
 
+    <!-- Módulo 2: Carrossel dinâmico com filtro por status 'Disponível' -->
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const carrossel = document.querySelector('.carrossel-pets');
 
             try {
-                // Busca os dados diretamente da sua API Node/MySQL local
                 const resposta = await fetch('http://localhost:3000/pets');
                 const petsDaAPI = await resposta.json();
 
-                carrossel.innerHTML = ''; // Garante que a div está limpa
+                carrossel.innerHTML = '';
 
-                petsDaAPI.forEach(pet => {
+                // FILTRO CRÍTICO: apenas pets com status 'Disponível'
+                const petsDisponiveis = petsDaAPI.filter(pet => pet.status === 'Disponível');
+
+                if (petsDisponiveis.length === 0) {
+                    carrossel.innerHTML = '<p style="padding: 2rem; color: var(--cor-secundaria); font-weight: bold;">Nenhum pet disponível para adoção no momento.</p>';
+                    return;
+                }
+
+                petsDisponiveis.forEach(pet => {
                     const classeBolinha = pet.vermifugado === 'Sim' ? 'sim' : 'nao';
-
-                    // Aqui usamos uma imagem padrão caso o banco não retorne o link da foto ainda
                     const imagemPet = pet.imagem ? pet.imagem : 'assets/foto animal 1.png';
 
-                    const cardHTML = `
-                        <article class="pet-card">
-                            <div class="pet-card-topo">
-                                <img src="${imagemPet}" alt="Foto de ${pet.nome}" class="pet-card-img">
+                    const card = document.createElement('article');
+                    card.className = 'pet-card';
+                    card.innerHTML = `
+                        <div class="pet-card-topo">
+                            <img src="${imagemPet}" alt="Foto de ${pet.nome || pet.especie}" class="pet-card-img">
+                        </div>
+                        <div class="pet-card-corpo">
+                            <div class="pet-detalhe"><span class="pet-label">Espécie:</span> <span class="pet-valor">${pet.especie}</span></div>
+                            <div class="pet-detalhe"><span class="pet-label">Gênero:</span> <span class="pet-valor">${pet.genero || '—'}</span></div>
+                            <div class="pet-detalhe"><span class="pet-label">Cor:</span> <span class="pet-valor">${pet.cor}</span></div>
+                            <div class="pet-detalhe-inline">
+                                <span class="pet-label">Vermifugado:</span>
+                                <span class="pet-valor">${pet.vermifugado || '—'}</span>
+                                <span class="circulo-vermifugado ${classeBolinha}"></span>
                             </div>
-                            <div class="pet-card-corpo">
-                                <div class="pet-detalhe"><span class="pet-label">Espécie:</span> <span class="pet-valor">${pet.especie}</span></div>
-                                <div class="pet-detalhe"><span class="pet-label">Gênero:</span> <span class="pet-valor">${pet.genero}</span></div>
-                                <div class="pet-detalhe"><span class="pet-label">Cor:</span> <span class="pet-valor">${pet.cor}</span></div>
-                                <div class="pet-detalhe-inline">
-                                    <span class="pet-label">Vermifugado:</span> 
-                                    <span class="pet-valor">${pet.vermifugado}</span>
-                                    <span class="circulo-vermifugado ${classeBolinha}"></span>
-                                </div>
-                                <div class="pet-detalhe"><span class="pet-label">Nome:</span> <span class="pet-valor">${pet.nome}</span></div>
-                                <div class="pet-card-footer">
-                                    <a href="#" class="pet-btn-ver">Ver</a>
-                                </div>
+                            <div class="pet-detalhe"><span class="pet-label">Nome:</span> <span class="pet-valor">${pet.nome || '—'}</span></div>
+                            <div class="pet-card-footer">
+                                <a href="perfil-pet.html?id=${pet.idPet}" class="pet-btn-ver">Ver</a>
                             </div>
-                        </article>
+                        </div>
                     `;
-                    carrossel.innerHTML += cardHTML;
+                    carrossel.appendChild(card);
                 });
 
             } catch (erro) {

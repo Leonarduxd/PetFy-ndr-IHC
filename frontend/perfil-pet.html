@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Perfil do Pet</title>
+    <title>PetFy(ndr) - Perfil do Pet</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,13 +12,13 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
             <ul class="menu">
                 <li><a href="index.html" class="menu-item">Início</a></li>
-                <li><a href="adotar.html" class="menu-item">Adotar</a></li>
+                <li><a href="adotar.html" class="menu-item ativo">Adotar</a></li>
                 <li><a href="doacao.html" class="menu-item">Doações</a></li>
                 <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
             </ul>
@@ -31,10 +31,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="login.html" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -42,49 +39,11 @@
     </header>
 
     <main class="conteudo-principal pet-perfil-main">
-        <div class="pet-perfil-container">
-            <!-- Coluna Esquerda (A Foto) -->
-            <div class="pet-perfil-col-esquerda">
-                <img src="assets/foto animal 1.png" alt="Foto do pet Pipa" class="pet-perfil-img">
-            </div>
-
-            <!-- Coluna Direita (As Informações) -->
-            <div class="pet-perfil-col-direita">
-                <h1 class="pet-perfil-nome">Pipa</h1>
-                <div class="pet-perfil-resgate">
-                    <span>Resgatado por: <strong>Abrigo São Francisco</strong></span>
-                </div>
-
-                <div class="pet-perfil-grade">
-                    <div class="perfil-detalhe">
-                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Cachorro</span>
-                    </div>
-                    <div class="perfil-detalhe">
-                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Fêmea</span>
-                    </div>
-                    <div class="perfil-detalhe">
-                        <span class="pet-label">Idade:</span> <span class="pet-valor">3 anos</span>
-                    </div>
-                    <div class="perfil-detalhe">
-                        <span class="pet-label">Cor:</span> <span class="pet-valor">Preto</span>
-                    </div>
-                    <div class="perfil-detalhe-inline">
-                        <span class="pet-label">Vermifugado:</span>
-                        <span class="pet-valor">Sim</span>
-                        <span class="circulo-vermifugado sim"></span>
-                    </div>
-                </div>
-
-                <section class="pet-perfil-historia">
-                    <h2 class="historia-titulo">Personalidade / História</h2>
-                    <p class="historia-texto">Pipa é uma cachorrinha dócil, brincalhona e extremamente companheira. Foi
-                        resgatada nas proximidades do campus universitário e, desde então, tem recebido muito carinho de
-                        protetores parceiros. Ela se dá muito bem com outros animais e adora correr ao ar livre. Está
-                        vacinada, vermifugada e prontinha para receber todo o amor de uma nova família.</p>
-                </section>
-
-                <button type="button" class="pet-perfil-btn-adotar">Quero Adotar!</button>
-            </div>
+        <div class="pet-perfil-container" id="perfil-container">
+            <!-- Conteúdo preenchido dinamicamente pelo JS -->
+            <p id="loading-perfil" style="padding: 2rem; color: var(--cor-secundaria); font-weight: bold;">
+                Carregando informações do pet...
+            </p>
         </div>
     </main>
 
@@ -94,6 +53,130 @@
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
+
+    <!-- Módulo 2 + 3: Perfil dinâmico do Pet & Ação de Adotar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('perfil-container');
+
+            // Lê o ID do pet da URL
+            const params = new URLSearchParams(window.location.search);
+            const petId = params.get('id');
+
+            if (!petId) {
+                container.innerHTML = '<p style="padding: 2rem; color: red; font-weight: bold;">Pet não encontrado. ID ausente na URL.</p>';
+                return;
+            }
+
+            try {
+                const resposta = await fetch('http://localhost:3000/pets');
+                const todosPets = await resposta.json();
+
+                const pet = todosPets.find(p => String(p.idPet) === String(petId));
+
+                if (!pet) {
+                    container.innerHTML = '<p style="padding: 2rem; color: red; font-weight: bold;">Pet não encontrado no sistema.</p>';
+                    return;
+                }
+
+                const classeBolinha = pet.vermifugado === 'Sim' ? 'sim' : 'nao';
+                const imagemPet = pet.imagem ? pet.imagem : 'assets/foto animal 1.png';
+                const nomeExibido = pet.nome || 'Pet sem nome';
+
+                // Renderiza o perfil completo do pet
+                container.innerHTML = `
+                    <!-- Coluna Esquerda (A Foto) -->
+                    <div class="pet-perfil-col-esquerda">
+                        <img src="${imagemPet}" alt="Foto do pet ${nomeExibido}" class="pet-perfil-img">
+                    </div>
+
+                    <!-- Coluna Direita (As Informações) -->
+                    <div class="pet-perfil-col-direita">
+                        <h1 class="pet-perfil-nome">${nomeExibido}</h1>
+                        <div class="pet-perfil-resgate">
+                            <span>Status: <strong id="status-badge" class="${pet.status === 'Disponível' ? 'status-badge ativo' : 'status-badge adotado'}">${pet.status}</strong></span>
+                        </div>
+
+                        <div class="pet-perfil-grade">
+                            <div class="perfil-detalhe">
+                                <span class="pet-label">Espécie:</span> <span class="pet-valor">${pet.especie}</span>
+                            </div>
+                            <div class="perfil-detalhe">
+                                <span class="pet-label">Gênero:</span> <span class="pet-valor">${pet.genero || '—'}</span>
+                            </div>
+                            <div class="perfil-detalhe">
+                                <span class="pet-label">Idade:</span> <span class="pet-valor">${pet.idade ? pet.idade + ' anos' : '—'}</span>
+                            </div>
+                            <div class="perfil-detalhe">
+                                <span class="pet-label">Cor:</span> <span class="pet-valor">${pet.cor}</span>
+                            </div>
+                            <div class="perfil-detalhe">
+                                <span class="pet-label">Raça:</span> <span class="pet-valor">${pet.raca || '—'}</span>
+                            </div>
+                            <div class="perfil-detalhe-inline">
+                                <span class="pet-label">Vermifugado:</span>
+                                <span class="pet-valor">${pet.vermifugado || '—'}</span>
+                                <span class="circulo-vermifugado ${classeBolinha}"></span>
+                            </div>
+                        </div>
+
+                        <section class="pet-perfil-historia">
+                            <h2 class="historia-titulo">Personalidade / História</h2>
+                            <p class="historia-texto">${pet.personalidade || 'Sem descrição disponível. Entre em contato conosco para saber mais sobre esse pet!'}</p>
+                        </section>
+
+                        ${pet.status === 'Disponível'
+                            ? `<button type="button" id="btn-adotar" class="pet-perfil-btn-adotar">Quero Adotar! 🐾</button>`
+                            : `<p style="font-size:1.1rem; font-weight:bold; color: #888; margin-top: 1rem;">Este pet já foi adotado. 💛</p>`
+                        }
+                    </div>
+                `;
+
+                // Módulo 3: Ação de adotar
+                const btnAdotar = document.getElementById('btn-adotar');
+                if (btnAdotar) {
+                    btnAdotar.addEventListener('click', async () => {
+                        btnAdotar.disabled = true;
+                        btnAdotar.textContent = 'Processando...';
+
+                        try {
+                            const respostaPut = await fetch(`http://localhost:3000/pets/${petId}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ status: 'Adotado' })
+                            });
+
+                            if (respostaPut.ok) {
+                                // Exibe modal de sucesso e redireciona para adotar.html
+                                mostrarModal(
+                                    'Adoção Solicitada! 🐾',
+                                    'Parabéns! Solicitação de adoção realizada com sucesso! Em breve entraremos em contato.',
+                                    () => { window.location.href = 'adotar.html'; }
+                                );
+                            } else {
+                                const erro = await respostaPut.json();
+                                mostrarModal('Erro', erro.erro || 'Não foi possível processar a adoção. Tente novamente.');
+                                btnAdotar.disabled = false;
+                                btnAdotar.textContent = 'Quero Adotar! 🐾';
+                            }
+                        } catch (erroRede) {
+                            console.error('Erro ao adotar:', erroRede);
+                            mostrarModal('Servidor Offline', 'Não foi possível conectar ao servidor. Verifique se o backend está rodando.');
+                            btnAdotar.disabled = false;
+                            btnAdotar.textContent = 'Quero Adotar! 🐾';
+                        }
+                    });
+                }
+
+            } catch (erro) {
+                console.error('Erro ao carregar pet:', erro);
+                container.innerHTML = '<p style="padding: 2rem; color: var(--cor-secundaria); font-weight: bold;">Servidor offline. Ligue o backend para visualizar o perfil do pet.</p>';
+            }
+        });
+    </script>
 </body>
 
 </html>

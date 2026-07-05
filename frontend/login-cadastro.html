@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Cadastro Unificado</title>
+    <title>PetFy(ndr) - Cadastro Unificado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -35,10 +35,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="#" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -52,7 +49,7 @@
             <!-- Coluna Esquerda: Cadastro -->
             <div class="cadastro-card">
                 <h2 class="cadastro-titulo">Crie uma Conta</h2>
-                <form action="index.html" class="cadastro-form">
+                <form id="form-cadastro" class="cadastro-form">
                     <div class="form-group">
                         <label for="nome" class="form-label">Nome de Usuário</label>
                         <input type="text" id="nome" name="nome" placeholder="Digite seu nome de usuário" required
@@ -74,15 +71,16 @@
                             placeholder="Confirme sua senha" required class="form-input">
                     </div>
                     <button type="submit" class="cadastro-btn">Cadastrar</button>
-                    <form action="index.html">
-                        <p class="cadastro-footer-text">Já tem uma conta? <a href="login.html"
-                                class="cadastro-link">Entre</a></p>
+                    <p class="cadastro-footer-text">Já tem uma conta? <a href="login.html"
+                            class="cadastro-link">Entre</a></p>
+                </form>
             </div>
 
             <!-- Coluna Direita: Mensagem -->
             <div class="cadastro-mensagem bg-textura-patas">
                 <h2 class="mensagem-titulo">Criar uma conta é rápido, fácil e gratuito!</h2>
-                <p class="mensagem-texto">Com a sua conta da PetFy você tem acesso ao site, sua ponte para uma adoção
+                <p class="mensagem-texto">Com a sua conta da PetFy(ndr) você tem acesso ao site, sua ponte para uma
+                    adoção
                     responsável. Cadastre-se e ajude a dar um novo começo para muitos animais resgatados por ONGs e
                     protetores independentes!</p>
             </div>
@@ -95,6 +93,43 @@
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
+
+    <!-- Módulo 1: Lógica de Cadastro & Definição de Papel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Se já está logado, redireciona direto
+            if (localStorage.getItem('userRole')) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const formCadastro = document.getElementById('form-cadastro');
+            formCadastro.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value.trim().toLowerCase();
+                const senha = document.getElementById('senha').value;
+                const confirmarSenha = document.getElementById('confirmar-senha').value;
+
+                if (senha !== confirmarSenha) {
+                    mostrarModal('Senhas não conferem', 'As senhas digitadas são diferentes. Por favor, verifique e tente novamente.');
+                    return;
+                }
+
+                // Regra de admin: email contém 'admin@petfy'
+                if (email.includes('admin@petfy')) {
+                    localStorage.setItem('userRole', 'admin');
+                } else {
+                    localStorage.setItem('userRole', 'user');
+                }
+
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
 </body>
 
 </html>

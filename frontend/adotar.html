@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Adotar</title>
+    <title>PetFy(ndr) - Adotar</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -31,10 +31,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="login.html" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -44,32 +41,30 @@
     <main class="conteudo-principal adotar-main">
         <!-- Seção de Filtros (O Hub) -->
         <section class="secao-filtros">
-            <form class="filtros-form" action="#" method="GET">
+            <form class="filtros-form" id="form-filtros">
                 <div class="filtro-campo">
                     <label for="filtro-especie" class="filtro-label">Espécie</label>
                     <select id="filtro-especie" name="especie" class="filtro-select">
-                        <option value="" disabled selected>Espécie</option>
-                        <option value="caes">Cães</option>
-                        <option value="gatos">Gatos</option>
-                        <option value="outros">Outros</option>
+                        <option value="">Todas</option>
+                        <option value="Cachorro">Cães</option>
+                        <option value="Gato">Gatos</option>
+                        <option value="Outros">Outros</option>
                     </select>
                 </div>
                 <div class="filtro-campo">
-                    <label for="filtro-abrigo" class="filtro-label">ONG / Abrigo</label>
-                    <select id="filtro-abrigo" name="abrigo" class="filtro-select">
-                        <option value="" disabled selected>ONG / Abrigo</option>
-                        <option value="sao-francisco">Abrigo São Francisco</option>
-                        <option value="independentes">Protetores Independentes</option>
-                        <option value="todas">Todas</option>
+                    <label for="filtro-genero" class="filtro-label">Gênero</label>
+                    <select id="filtro-genero" name="genero" class="filtro-select">
+                        <option value="">Todos</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Fêmea">Fêmea</option>
                     </select>
                 </div>
                 <div class="filtro-campo">
-                    <label for="filtro-localizacao" class="filtro-label">Localização</label>
-                    <select id="filtro-localizacao" name="localizacao" class="filtro-select">
-                        <option value="" disabled selected>Localização</option>
-                        <option value="zona-sul">Zona Sul</option>
-                        <option value="zona-norte">Zona Norte</option>
-                        <option value="centro">Centro</option>
+                    <label for="filtro-vermifugado" class="filtro-label">Vermifugado</label>
+                    <select id="filtro-vermifugado" name="vermifugado" class="filtro-select">
+                        <option value="">Todos</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
                     </select>
                 </div>
                 <button type="submit" class="filtro-btn">Filtrar</button>
@@ -77,126 +72,10 @@
         </section>
 
         <!-- Seção da Grade de Pets (O Catálogo) -->
-        <section class="grade-pets">
-            <!-- Card 1: Pipa -->
-            <article class="pet-card">
-                <div class="pet-card-topo">
-                    <img src="assets/foto animal 1.png" alt="Foto de Pipa" class="pet-card-img">
-                </div>
-                <div class="pet-card-corpo">
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Cachorro</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Fêmea</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Cor:</span> <span class="pet-valor">Preto</span>
-                    </div>
-                    <div class="pet-detalhe-inline">
-                        <span class="pet-label">Vermifugado:</span>
-                        <span class="pet-valor">Sim</span>
-                        <span class="circulo-vermifugado sim"></span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Nome:</span> <span class="pet-valor">Pipa</span>
-                    </div>
-                    <p class="pet-resgatado-por">Resgatado por: <em>Abrigo São Francisco</em></p>
-                    <div class="pet-card-footer">
-                        <a href="#" class="pet-btn-ver">Ver</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 2: Simão -->
-            <article class="pet-card">
-                <div class="pet-card-topo">
-                    <img src="assets/foto animal 2.png" alt="Foto de Simão" class="pet-card-img">
-                </div>
-                <div class="pet-card-corpo">
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Gato</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Macho</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Cor:</span> <span class="pet-valor">Cinza</span>
-                    </div>
-                    <div class="pet-detalhe-inline">
-                        <span class="pet-label">Vermifugado:</span>
-                        <span class="pet-valor">Sim</span>
-                        <span class="circulo-vermifugado sim"></span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Nome:</span> <span class="pet-valor">Simão</span>
-                    </div>
-                    <p class="pet-resgatado-por">Resgatado por: <em>Protetores Independentes</em></p>
-                    <div class="pet-card-footer">
-                        <a href="#" class="pet-btn-ver">Ver</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 3: G. do C2 -->
-            <article class="pet-card">
-                <div class="pet-card-topo">
-                    <img src="assets/foto animal 3.png" alt="Foto de G. do C2" class="pet-card-img">
-                </div>
-                <div class="pet-card-corpo">
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Gato</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Macho</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Cor:</span> <span class="pet-valor">Amarelo / Laranja</span>
-                    </div>
-                    <div class="pet-detalhe-inline">
-                        <span class="pet-label">Vermifugado:</span>
-                        <span class="pet-valor">Não</span>
-                        <span class="circulo-vermifugado nao"></span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Nome:</span> <span class="pet-valor">G. do C2</span>
-                    </div>
-                    <p class="pet-resgatado-por">Resgatado por: <em>Abrigo São Francisco</em></p>
-                    <div class="pet-card-footer">
-                        <a href="#" class="pet-btn-ver">Ver</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 4: Mana -->
-            <article class="pet-card">
-                <div class="pet-card-topo">
-                    <img src="assets/foto animal 4.png" alt="Foto de Mana" class="pet-card-img">
-                </div>
-                <div class="pet-card-corpo">
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Espécie:</span> <span class="pet-valor">Cachorro</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Gênero:</span> <span class="pet-valor">Fêmea</span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Cor:</span> <span class="pet-valor">Marrom e Branco</span>
-                    </div>
-                    <div class="pet-detalhe-inline">
-                        <span class="pet-label">Vermifugado:</span>
-                        <span class="pet-valor">Sim</span>
-                        <span class="circulo-vermifugado sim"></span>
-                    </div>
-                    <div class="pet-detalhe">
-                        <span class="pet-label">Nome:</span> <span class="pet-valor">Mana</span>
-                    </div>
-                    <p class="pet-resgatado-por">Resgatado por: <em>Protetores Independentes</em></p>
-                    <div class="pet-card-footer">
-                        <a href="#" class="pet-btn-ver">Ver</a>
-                    </div>
-                </div>
-            </article>
+        <section class="grade-pets" id="grade-pets-container">
+            <p id="loading-msg" style="padding: 2rem; color: var(--cor-secundaria); font-weight: bold;">
+                Carregando pets disponíveis...
+            </p>
         </section>
     </main>
 
@@ -206,6 +85,91 @@
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
+
+    <!-- Módulo 2: Catálogo dinâmico com filtro por status 'Disponível' -->
+    <script>
+        let todosOsPets = [];
+
+        async function carregarPets() {
+            const container = document.getElementById('grade-pets-container');
+            const loadingMsg = document.getElementById('loading-msg');
+
+            try {
+                const resposta = await fetch('http://localhost:3000/pets');
+                const petsDaAPI = await resposta.json();
+
+                // FILTRO CRÍTICO: apenas pets com status 'Disponível'
+                todosOsPets = petsDaAPI.filter(pet => pet.status === 'Disponível');
+                renderizarCards(todosOsPets);
+
+            } catch (erro) {
+                console.error('Erro na conexão com o backend:', erro);
+                if (loadingMsg) loadingMsg.remove();
+                container.innerHTML = '<p style="padding: 2rem; color: var(--cor-secundaria); font-weight: bold;">Servidor offline. Ligue o backend para visualizar os pets disponíveis.</p>';
+            }
+        }
+
+        function renderizarCards(pets) {
+            const container = document.getElementById('grade-pets-container');
+            container.innerHTML = '';
+
+            if (pets.length === 0) {
+                container.innerHTML = '<p style="padding: 2rem; color: var(--cor-secundaria); font-weight: bold;">Nenhum pet encontrado com esses filtros.</p>';
+                return;
+            }
+
+            pets.forEach(pet => {
+                const classeBolinha = pet.vermifugado === 'Sim' ? 'sim' : 'nao';
+                const imagemPet = pet.imagem ? pet.imagem : 'assets/foto animal 1.png';
+
+                const card = document.createElement('article');
+                card.className = 'pet-card';
+                card.innerHTML = `
+                    <div class="pet-card-topo">
+                        <img src="${imagemPet}" alt="Foto de ${pet.nome || pet.especie}" class="pet-card-img">
+                    </div>
+                    <div class="pet-card-corpo">
+                        <div class="pet-detalhe"><span class="pet-label">Espécie:</span> <span class="pet-valor">${pet.especie}</span></div>
+                        <div class="pet-detalhe"><span class="pet-label">Gênero:</span> <span class="pet-valor">${pet.genero || '—'}</span></div>
+                        <div class="pet-detalhe"><span class="pet-label">Cor:</span> <span class="pet-valor">${pet.cor}</span></div>
+                        <div class="pet-detalhe-inline">
+                            <span class="pet-label">Vermifugado:</span>
+                            <span class="pet-valor">${pet.vermifugado || '—'}</span>
+                            <span class="circulo-vermifugado ${classeBolinha}"></span>
+                        </div>
+                        <div class="pet-detalhe"><span class="pet-label">Nome:</span> <span class="pet-valor">${pet.nome || '—'}</span></div>
+                        <div class="pet-card-footer">
+                            <a href="perfil-pet.html?id=${pet.idPet}" class="pet-btn-ver">Ver</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarPets();
+
+            document.getElementById('form-filtros').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const especie = document.getElementById('filtro-especie').value;
+                const genero = document.getElementById('filtro-genero').value;
+                const vermifugado = document.getElementById('filtro-vermifugado').value;
+
+                const filtrados = todosOsPets.filter(pet => {
+                    const okEspecie = !especie || pet.especie === especie;
+                    const okGenero = !genero || pet.genero === genero;
+                    const okVermifugado = !vermifugado || pet.vermifugado === vermifugado;
+                    return okEspecie && okGenero && okVermifugado;
+                });
+
+                renderizarCards(filtrados);
+            });
+        });
+    </script>
 </body>
 
 </html>

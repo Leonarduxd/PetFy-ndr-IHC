@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Doação</title>
+    <title>PetFy(ndr) - Doação</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -35,10 +35,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="login.html" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -57,7 +54,7 @@
 
         <!-- Container do Formulário -->
         <div class="doacao-container">
-            <form action="#" class="doacao-form">
+            <form id="form-doacao" class="doacao-form">
                 <!-- Abas -->
                 <div class="doacao-abas">
                     <label class="aba-item">
@@ -156,6 +153,41 @@
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
+
+    <!-- Módulo 4: Interceptação do formulário de doação -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formDoacao = document.getElementById('form-doacao');
+
+            formDoacao.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Validação: campo de quantia preenchido
+                const quantia = formDoacao.querySelector('input[name="quantia"]').value.trim();
+                if (!quantia) {
+                    mostrarModal('Campo obrigatório', 'Por favor, informe o valor da doação antes de continuar.');
+                    return;
+                }
+
+                // Validação: nome do doador
+                const primeiroNome = formDoacao.querySelector('input[name="primeiro_nome"]').value.trim();
+                if (!primeiroNome) {
+                    mostrarModal('Campo obrigatório', 'Por favor, informe seu nome para continuar.');
+                    return;
+                }
+
+                // Exibe modal de agradecimento e reseta o formulário
+                mostrarModal(
+                    'Obrigado pela sua doação! 💛',
+                    'Obrigado por doar e apoiar o Petfy(ndr)! Sua contribuição faz a diferença na vida de muitos animais.',
+                    () => { formDoacao.reset(); }
+                );
+            });
+        });
+    </script>
 </body>
 
 </html>

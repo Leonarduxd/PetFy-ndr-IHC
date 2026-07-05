@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Login</title>
+    <title>PetFy(ndr) - Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -35,10 +35,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="#" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -52,7 +49,7 @@
             <!-- Coluna Esquerda: Login -->
             <div class="cadastro-card">
                 <h2 class="cadastro-titulo">Login</h2>
-                <form action="index.html" class="cadastro-form">
+                <form id="form-login" class="cadastro-form">
                     <div class="form-group">
                         <label for="usuario" class="form-label">Usuário</label>
                         <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required
@@ -85,6 +82,42 @@
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
+
+    <!-- Módulo 1: Lógica de Login & Definição de Papel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Se já está logado, redireciona direto
+            if (localStorage.getItem('userRole')) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const formLogin = document.getElementById('form-login');
+            formLogin.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const usuario = document.getElementById('usuario').value.trim().toLowerCase();
+                const senha = document.getElementById('senha').value;
+
+                if (!usuario || !senha) {
+                    mostrarModal('Campos Obrigatórios', 'Por favor, preencha usuário e senha.');
+                    return;
+                }
+
+                // Regra de admin: email/usuário contém 'admin@petfy' ou é exatamente 'admin'
+                if (usuario.includes('admin@petfy') || usuario === 'admin') {
+                    localStorage.setItem('userRole', 'admin');
+                } else {
+                    localStorage.setItem('userRole', 'user');
+                }
+
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
 </body>
 
 </html>

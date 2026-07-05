@@ -1,0 +1,111 @@
+---
+title: PetFy(ndr) — Diagrama de Fluxo entre Telas
+---
+%% Documentação técnica do fluxo de navegação do sistema PetFy
+%% Gerado a partir do código-fonte (frontend HTML + backend Express/MySQL)
+%% Legenda:
+%%   Retângulo arredondado = Tela (página HTML)
+%%   Losango               = Ponto de decisão / autenticação
+%%   Cilindro              = API / Banco de dados
+%%   Linha tracejada       = Chamada à API (fetch)
+
+flowchart TD
+
+    %% ===================== ENTRADA =====================
+    Start([Usuário acessa o site]):::entry --> Index
+
+    %% ===================== TELAS PÚBLICAS =====================
+    subgraph PUBLICO["Área Pública (visitante)"]
+        direction TB
+        Index["🏠 index.html<br/>Tela Principal / Início<br/><small>Carrossel de pets em destaque</small>"]:::page
+        Adotar["🐾 adotar.html<br/>Adotar<br/><small>Lista + filtros de pets</small>"]:::page
+        PerfilPet["📋 perfil-pet.html<br/>Perfil do Pet<br/><small>Detalhes + 'Quero Adotar!'</small>"]:::page
+        Doacao["💚 doacao.html<br/>Doações<br/><small>Abas: Mensal / Única Vez</small>"]:::page
+        QuemSomos["ℹ️ quem-somos.html<br/>Quem Somos"]:::page
+    end
+
+    %% ===================== AUTENTICAÇÃO =====================
+    subgraph AUTH["Autenticação"]
+        direction TB
+        Login["🔑 login.html<br/>Login<br/><small>Campos + botão 'Entrar'</small>"]:::page
+        Cadastro["📝 login-cadastro.html<br/>Cadastro Unificado<br/><small>Botão 'Cadastrar'</small>"]:::page
+        Decisao{"Tipo de<br/>usuário?"}:::decision
+    end
+
+    %% ===================== ÁREA RESTRITA (ADMIN) =====================
+    subgraph ADMIN_AREA["Área Administrativa (admin)"]
+        direction TB
+        Admin["🛠️ admin.html<br/>Painel de Administração<br/><small>Cadastrar pet • Lista • Excluir</small>"]:::admin
+    end
+
+    %% ===================== MENU DE CONTA (dropdown) =====================
+    subgraph CONTA["Menu da Conta (dropdown — hambúrguer)"]
+        direction TB
+        ContaItem["👤 Conta<br/><small>href='#' (não implementada)</small>"]:::stub
+        Relatorios["📊 Relatórios<br/><small>href='#' (não implementada)</small>"]:::stub
+        Sair["🚪 Sair<br/><small>encerra sessão</small>"]:::stub
+    end
+
+    %% ===================== BACKEND / API =====================
+    subgraph BACKEND["Backend — Express na porta 3000"]
+        direction TB
+        API[("🗄️ API REST<br/>+ MySQL petfy_db")]:::db
+        R1["GET /pets<br/><small>listar pets</small>"]:::route
+        R2["POST /pets<br/><small>cadastrar pet</small>"]:::route
+        R3["PUT /pets/:id<br/><small>atualizar status</small>"]:::route
+        R4["DELETE /pets/:id<br/><small>excluir pet</small>"]:::route
+        API --- R1
+        API --- R2
+        API --- R3
+        API --- R4
+    end
+
+    %% ===================== NAVEGAÇÃO GLOBAL (barra de menu) =====================
+    %% Presente no cabeçalho de TODAS as páginas: Início | Adotar | Doações | Quem Somos | Logo
+    Index <--> Adotar
+    Index <--> Doacao
+    Index <--> QuemSomos
+    Adotar <--> Doacao
+    Adotar <--> QuemSomos
+    Doacao <--> QuemSomos
+
+    %% Logo e item 'Início' sempre retornam à index
+    QuemSomos -. "logo / Início" .-> Index
+
+    %% ===================== FLUXO DE LOGIN =====================
+    Index -- "link 'Entrar' (cabeçalho)" --> Login
+    Login -- "'Cadastre-se'" --> Cadastro
+    Cadastro -- "'Já tem uma conta?'" --> Login
+    Login -- "submeter 'Entrar'" --> Decisao
+    Cadastro -- "submeter 'Cadastrar'" --> Decisao
+    Decisao -- "Comum" --> Index
+    Decisao -- "Administrador" --> Admin
+
+    %% ===================== FLUXO DE ADOÇÃO =====================
+    Adotar -- "botão 'Ver' no card" --> PerfilPet
+    PerfilPet -- "'Quero Adotar!'<br/>(solicitação de adoção)" --> R3
+    PerfilPet -. "voltar (nav)" .-> Adotar
+
+    %% ===================== MENU DE CONTA (usuário logado) =====================
+    Index -. "dropdown" .-> ContaItem
+    Index -. "dropdown" .-> Relatorios
+    Index -. "dropdown 'Sair'" .-> Sair
+    Sair -- "encerra sessão" --> Login
+
+    %% ===================== FLUXO ADMIN =====================
+    Admin -- "form 'Salvar Pet'" --> R2
+    Admin -- "botão 'Excluir'" --> R4
+    Admin -. "nav global" .-> Index
+
+    %% ===================== CHAMADAS À API (fetch) =====================
+    Index -. "fetch carrossel" .-> R1
+    Adotar -. "fetch lista" .-> R1
+
+    %% ===================== ESTILOS =====================
+    classDef page fill:#FFF4E6,stroke:#E8772E,stroke-width:2px,color:#4A2C13;
+    classDef admin fill:#FDE8E8,stroke:#C0392B,stroke-width:2px,color:#4A1313;
+    classDef decision fill:#FFF9DB,stroke:#E0B000,stroke-width:2px,color:#5A4500;
+    classDef db fill:#E6F4FF,stroke:#1B6FB3,stroke-width:2px,color:#0A3A5A;
+    classDef route fill:#EAF6EC,stroke:#2E8B57,stroke-width:1px,color:#14401F;
+    classDef stub fill:#F0F0F0,stroke:#999999,stroke-width:1px,color:#555555,stroke-dasharray: 4 3;
+    classDef entry fill:#2E8B57,stroke:#14401F,stroke-width:2px,color:#FFFFFF;

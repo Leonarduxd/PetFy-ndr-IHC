@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetFy - Painel de Administração</title>
+    <title>PetFy(ndr) - Painel de Administração</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,29 +12,27 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(dr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
             <ul class="menu">
                 <li><a href="index.html" class="menu-item">Início</a></li>
-                <li><a href="adotar.html" class="menu-item ativo">Adotar</a></li>
+                <li><a href="adotar.html" class="menu-item">Adotar</a></li>
                 <li><a href="doacao.html" class="menu-item">Doações</a></li>
                 <li><a href="quem-somos.html" class="menu-item">Quem Somos</a></li>
+                <li><a href="admin.html" class="menu-item ativo">⚙️ Admin</a></li>
             </ul>
         </nav>
         <div class="area-usuario">
-            <img src="assets/foto perfil comum.png" alt="Perfil do Usuário" class="profile-pic">
+            <img src="assets/foto perfil admin.png" alt="Perfil Admin" class="profile-pic">
             <div class="menu-container">
                 <div class="menu-icon">
                     <img src="assets/simbolo menu hamburger.png" alt="Menu" style="width: 30px; cursor: pointer;">
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <a href="index.html">Início</a>
-                        <a href="#">Conta</a>
-                        <a href="#">Relatórios</a>
-                        <a href="login.html" class="btn-sair">Sair</a>
+                        <!-- Preenchido dinamicamente por petfy-app.js -->
                     </div>
                 </div>
             </div>
@@ -46,10 +44,11 @@
 
         <section class="admin-card">
             <h2 class="admin-card-titulo">Cadastrar Novo Animal</h2>
-            <form class="admin-form" action="#" method="POST">
+            <form class="admin-form" id="form-cadastrar-pet">
                 <div class="form-group-admin">
                     <label for="nome" class="form-label-admin">Nome</label>
-                    <input type="text" id="nome" name="nome" required placeholder="Digite o nome do animal" class="form-input-admin">
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome do animal"
+                        class="form-input-admin">
                 </div>
                 <div class="form-group-admin">
                     <label for="especie" class="form-label-admin">Espécie</label>
@@ -69,8 +68,18 @@
                     </select>
                 </div>
                 <div class="form-group-admin">
+                    <label for="raca" class="form-label-admin">Raça</label>
+                    <input type="text" id="raca" name="raca" placeholder="Ex: SRD, Labrador" class="form-input-admin">
+                </div>
+                <div class="form-group-admin">
                     <label for="cor" class="form-label-admin">Cor</label>
-                    <input type="text" id="cor" name="cor" required placeholder="Digite a cor do animal" class="form-input-admin">
+                    <input type="text" id="cor" name="cor" required placeholder="Digite a cor do animal"
+                        class="form-input-admin">
+                </div>
+                <div class="form-group-admin">
+                    <label for="idade" class="form-label-admin">Idade (anos)</label>
+                    <input type="number" id="idade" name="idade" min="0" placeholder="Ex: 2"
+                        class="form-input-admin">
                 </div>
                 <div class="form-group-admin">
                     <label for="vermifugado" class="form-label-admin">Vermifugado</label>
@@ -81,8 +90,15 @@
                     </select>
                 </div>
                 <div class="form-group-admin">
+                    <label for="personalidade" class="form-label-admin">Personalidade / História</label>
+                    <textarea id="personalidade" name="personalidade" rows="3"
+                        placeholder="Descreva a personalidade e história do pet" class="form-input-admin"
+                        style="resize: vertical;"></textarea>
+                </div>
+                <div class="form-group-admin">
                     <label for="imagem" class="form-label-admin">Link da Imagem</label>
-                    <input type="text" id="imagem" name="imagem" required placeholder="Ex: assets/foto animal 1.png" class="form-input-admin">
+                    <input type="text" id="imagem" name="imagem" placeholder="Ex: assets/foto animal 1.png"
+                        class="form-input-admin">
                 </div>
                 <div class="form-group-admin-btn">
                     <button type="submit" class="admin-btn-salvar">Salvar Pet</button>
@@ -91,7 +107,7 @@
         </section>
 
         <section class="admin-tabela-container">
-            <h2 class="admin-tabela-titulo">Lista de Pets Ativos</h2>
+            <h2 class="admin-tabela-titulo">Lista de Todos os Pets</h2>
             <table class="admin-tabela">
                 <thead>
                     <tr>
@@ -103,22 +119,11 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="admin-tabela-corpo">
                     <tr>
-                        <td>1</td>
-                        <td><img src="assets/foto animal 1.png" alt="Foto de Pipa" class="admin-tabela-img"></td>
-                        <td>Pipa</td>
-                        <td>Cachorro</td>
-                        <td><span class="status-badge ativo">Ativo</span></td>
-                        <td><button type="button" class="admin-btn-excluir">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><img src="assets/foto animal 2.png" alt="Foto de Simão" class="admin-tabela-img"></td>
-                        <td>Simão</td>
-                        <td>Gato</td>
-                        <td><span class="status-badge ativo">Ativo</span></td>
-                        <td><button type="button" class="admin-btn-excluir">Excluir</button></td>
+                        <td colspan="6" style="text-align:center; padding: 1rem; color: #888;">
+                            Carregando pets...
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -127,9 +132,159 @@
 
     <footer class="rodape">
         <div class="rodape-conteudo">
-            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a adoção e o cuidado animal.</p>
+            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+                adoção e o cuidado animal.</p>
         </div>
     </footer>
+
+    <!-- Script compartilhado: Auth + Navbar dinâmica -->
+    <script src="petfy-app.js"></script>
+
+    <!-- Módulo 4: Admin Dashboard CRUD -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ── SEGURANÇA: Verifica papel do usuário ──────────────────────────
+            const role = localStorage.getItem('userRole');
+            if (role !== 'admin') {
+                mostrarModal(
+                    'Acesso Negado 🚫',
+                    'Você não tem permissão para acessar o Painel de Administração.',
+                    () => { window.location.href = 'index.html'; }
+                );
+                return; // Para a execução do restante do script
+            }
+
+            // ── TABELA: Carrega todos os pets (sem filtro de status) ──────────
+            async function carregarTabelaAdmin() {
+                const tbody = document.getElementById('admin-tabela-corpo');
+
+                try {
+                    const resposta = await fetch('http://localhost:3000/pets');
+                    const pets = await resposta.json();
+
+                    tbody.innerHTML = '';
+
+                    if (pets.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 1rem; color: #888;">Nenhum pet cadastrado.</td></tr>';
+                        return;
+                    }
+
+                    pets.forEach(pet => {
+                        const imagemPet = pet.imagem ? pet.imagem : 'assets/foto animal 1.png';
+                        const statusClass = pet.status === 'Disponível' ? 'ativo' : 'adotado';
+                        const nomeExibido = pet.nome || '—';
+
+                        const tr = document.createElement('tr');
+                        tr.setAttribute('data-pet-id', pet.idPet);
+                        tr.innerHTML = `
+                            <td>${pet.idPet}</td>
+                            <td><img src="${imagemPet}" alt="Foto de ${nomeExibido}" class="admin-tabela-img"></td>
+                            <td>${nomeExibido}</td>
+                            <td>${pet.especie}</td>
+                            <td><span class="status-badge ${statusClass}">${pet.status}</span></td>
+                            <td>
+                                <button type="button" class="admin-btn-excluir" data-id="${pet.idPet}">
+                                    Deletar
+                                </button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+
+                    // Event delegation para os botões de deletar
+                    tbody.querySelectorAll('.admin-btn-excluir').forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const idPet = btn.dataset.id;
+                            const confirmacao = confirm(`Tem certeza que deseja deletar o pet ID ${idPet}? Esta ação é irreversível.`);
+                            if (!confirmacao) return;
+
+                            try {
+                                const respostaDelete = await fetch(`http://localhost:3000/pets/${idPet}`, {
+                                    method: 'DELETE'
+                                });
+
+                                if (respostaDelete.ok) {
+                                    // Remove a linha da tabela sem recarregar
+                                    const linha = document.querySelector(`tr[data-pet-id="${idPet}"]`);
+                                    if (linha) {
+                                        linha.style.transition = 'opacity 0.3s';
+                                        linha.style.opacity = '0';
+                                        setTimeout(() => linha.remove(), 300);
+                                    }
+                                    mostrarModal('Sucesso', `Pet ID ${idPet} removido do sistema com sucesso!`);
+                                } else {
+                                    const erro = await respostaDelete.json();
+                                    mostrarModal('Erro ao Deletar', erro.erro || 'Não foi possível remover o pet.');
+                                }
+                            } catch (erroRede) {
+                                console.error('Erro ao deletar:', erroRede);
+                                mostrarModal('Servidor Offline', 'Não foi possível conectar ao servidor.');
+                            }
+                        });
+                    });
+
+                } catch (erro) {
+                    console.error('Erro ao carregar pets:', erro);
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 1rem; color: red;">Erro ao carregar dados. Verifique se o backend está rodando.</td></tr>';
+                }
+            }
+
+            carregarTabelaAdmin();
+
+            // ── FORMULÁRIO: Cadastrar novo pet ────────────────────────────────
+            const formCadastrar = document.getElementById('form-cadastrar-pet');
+            formCadastrar.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const payload = {
+                    nome: formCadastrar.nome.value.trim(),
+                    especie: formCadastrar.especie.value,
+                    genero: formCadastrar.genero.value,
+                    raca: formCadastrar.raca.value.trim(),
+                    cor: formCadastrar.cor.value.trim(),
+                    idade: formCadastrar.idade.value ? parseInt(formCadastrar.idade.value) : null,
+                    vermifugado: formCadastrar.vermifugado.value,
+                    personalidade: formCadastrar.personalidade.value.trim(),
+                    imagem: formCadastrar.imagem.value.trim(),
+                    status: 'Disponível'
+                };
+
+                const btnSalvar = formCadastrar.querySelector('.admin-btn-salvar');
+                btnSalvar.disabled = true;
+                btnSalvar.textContent = 'Salvando...';
+
+                try {
+                    const resposta = await fetch('http://localhost:3000/pets', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const dados = await resposta.json();
+
+                    if (resposta.ok) {
+                        mostrarModal(
+                            'Pet Cadastrado! 🐾',
+                            `${dados.mensagem} (ID: ${dados.id_novo_pet})`,
+                            () => {
+                                formCadastrar.reset();
+                                carregarTabelaAdmin(); // Atualiza a tabela
+                            }
+                        );
+                    } else {
+                        mostrarModal('Erro ao Cadastrar', dados.erro || 'Não foi possível cadastrar o pet.');
+                    }
+                } catch (erroRede) {
+                    console.error('Erro ao cadastrar pet:', erroRede);
+                    mostrarModal('Servidor Offline', 'Não foi possível conectar ao servidor backend.');
+                } finally {
+                    btnSalvar.disabled = false;
+                    btnSalvar.textContent = 'Salvar Pet';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

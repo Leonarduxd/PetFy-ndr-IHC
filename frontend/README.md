@@ -56,7 +56,7 @@ Siga os passos abaixo para clonar e configurar o projeto em sua máquina local:
 
 ## Como Contribuir
 
-Estamos abertos a contribuições para aprimorar o PetFy (NDR). Siga estas diretrizes para participar:
+Estamos abertos a contribuições para aprimorar o PetFy(ndr) (NDR). Siga estas diretrizes para participar:
 
 - **Reporte Bugs**: Abra uma issue descrevendo o problema encontrado, incluindo passos para reproduzi-lo.
 - **Sugira Melhorias**: Proponha novas funcionalidades ou melhorias na interface e experiência do usuário via issues.
@@ -65,13 +65,13 @@ Estamos abertos a contribuições para aprimorar o PetFy (NDR). Siga estas diret
 
 ## Futuro do Projeto
 
-Planejamos expandir o PetFy (NDR) com as seguintes funcionalidades:
+Planejamos expandir o PetFy(ndr) (NDR) com as seguintes funcionalidades:
 - Implementação de notificações via SMS para comunicações instantâneas.
 - Suporte a mais tipos de animais, como aves e répteis, ampliando o alcance do sistema.
 - Adição de um módulo para eventos de adoção presenciais, conectando abrigos e comunidades locais.
 
 ## Contato
 
-Para dúvidas ou sugestões, entre em contato com a equipe de desenvolvimento através das issues do GitHub. Agradecemos seu interesse no PetFy (NDR) e esperamos que esta plataforma contribua para melhorar a vida de animais domésticos e facilitar o trabalho de abrigos e adotantes!
+Para dúvidas ou sugestões, entre em contato com a equipe de desenvolvimento através das issues do GitHub. Agradecemos seu interesse no PetFy(ndr) (NDR) e esperamos que esta plataforma contribua para melhorar a vida de animais domésticos e facilitar o trabalho de abrigos e adotantes!
 
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;500;700&display=swap');
 
 :root {
-    /* Paleta de Cores Oficial do Petfy */
+    /* Paleta de Cores Oficial do PetFy(ndr) */
     --cor-fundo: #FCECCF;
     /* Bege claro predominante no fundo */
     --cor-primaria: #6B4226;
@@ -1504,6 +1504,12 @@ header {
     background-color: rgba(76, 175, 80, 0.15);
     color: var(--cor-sucesso);
     border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-badge.adotado {
+    background-color: rgba(205, 133, 63, 0.15);
+    color: var(--cor-secundaria);
+    border: 1px solid rgba(205, 133, 63, 0.3);
 }
 
 .admin-btn-excluir {
