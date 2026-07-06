@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy(ndr)" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <!-- Preenchido dinamicamente por petfy-app.js -->
+                        <!-- Preenchido dinamicamente por js/auth-navbar.js -->
                     </div>
                 </div>
             </div>
@@ -42,32 +42,62 @@
         <!-- Seção de Filtros (O Hub) -->
         <section class="secao-filtros">
             <form class="filtros-form" id="form-filtros">
-                <div class="filtro-campo">
-                    <label for="filtro-especie" class="filtro-label">Espécie</label>
-                    <select id="filtro-especie" name="especie" class="filtro-select">
-                        <option value="">Todas</option>
-                        <option value="Cachorro">Cães</option>
-                        <option value="Gato">Gatos</option>
-                        <option value="Outros">Outros</option>
-                    </select>
+                <!-- Filtros Básicos -->
+                <div class="filtros-basicos">
+                    <div class="filtro-campo">
+                        <label for="filtro-especie" class="filtro-label">Espécie</label>
+                        <select id="filtro-especie" name="especie" class="filtro-select">
+                            <option value="">Todas</option>
+                            <option value="Cachorro">Cães</option>
+                            <option value="Gato">Gatos</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="filtro-campo">
+                        <label for="filtro-genero" class="filtro-label">Gênero</label>
+                        <select id="filtro-genero" name="genero" class="filtro-select">
+                            <option value="">Todos</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Fêmea">Fêmea</option>
+                        </select>
+                    </div>
+                    <div class="filtro-campo">
+                        <label for="filtro-vermifugado" class="filtro-label">Vermifugado</label>
+                        <select id="filtro-vermifugado" name="vermifugado" class="filtro-select">
+                            <option value="">Todos</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <button type="button" id="btn-filtros-avancados" class="filtro-btn-avancados">
+                        + Filtros Avançados
+                    </button>
+                    <button type="submit" class="filtro-btn">Filtrar</button>
                 </div>
-                <div class="filtro-campo">
-                    <label for="filtro-genero" class="filtro-label">Gênero</label>
-                    <select id="filtro-genero" name="genero" class="filtro-select">
-                        <option value="">Todos</option>
-                        <option value="Macho">Macho</option>
-                        <option value="Fêmea">Fêmea</option>
-                    </select>
+
+                <!-- Gaveta de Filtros Avançados (oculta por padrão) -->
+                <div class="filtros-avancados" id="filtros-avancados-drawer">
+                    <div class="filtro-campo">
+                        <label for="filtro-nome" class="filtro-label">Nome</label>
+                        <input type="text" id="filtro-nome" name="nome" placeholder="Buscar por nome..." class="filtro-input">
+                    </div>
+                    <div class="filtro-campo">
+                        <label for="filtro-raca" class="filtro-label">Raça</label>
+                        <input type="text" id="filtro-raca" name="raca" placeholder="Ex: SRD, Labrador..." class="filtro-input">
+                    </div>
+                    <div class="filtro-campo">
+                        <label for="filtro-cor" class="filtro-label">Cor</label>
+                        <input type="text" id="filtro-cor" name="cor" placeholder="Ex: Preto, Branco..." class="filtro-input">
+                    </div>
+                    <div class="filtro-campo filtro-campo-idade">
+                        <label class="filtro-label">Idade (anos)</label>
+                        <div class="filtro-idade-range">
+                            <input type="number" id="filtro-idade-min" name="idade_min" placeholder="De" min="0" class="filtro-input filtro-input-num">
+                            <span class="filtro-ate">até</span>
+                            <input type="number" id="filtro-idade-max" name="idade_max" placeholder="Até" min="0" class="filtro-input filtro-input-num">
+                        </div>
+                    </div>
                 </div>
-                <div class="filtro-campo">
-                    <label for="filtro-vermifugado" class="filtro-label">Vermifugado</label>
-                    <select id="filtro-vermifugado" name="vermifugado" class="filtro-select">
-                        <option value="">Todos</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                    </select>
-                </div>
-                <button type="submit" class="filtro-btn">Filtrar</button>
             </form>
         </section>
 
@@ -81,13 +111,13 @@
 
     <footer class="rodape">
         <div class="rodape-conteudo">
-            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+            <p class="rodape-texto">&copy; 2026 PetFy(ndr). Todos os direitos reservados. Desenvolvido para facilitar a
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
 
     <!-- Script compartilhado: Auth + Navbar dinâmica -->
-    <script src="petfy-app.js"></script>
+    <script src="js/auth-navbar.js"></script>
 
     <!-- Módulo 2: Catálogo dinâmico com filtro por status 'Disponível' -->
     <script>
@@ -125,22 +155,44 @@
                 const classeBolinha = pet.vermifugado === 'Sim' ? 'sim' : 'nao';
                 const imagemPet = pet.imagem ? pet.imagem : 'assets/foto animal 1.png';
 
+                // Lógica de formatação de idade (em meses)
+                let idadeFormatada;
+                if (pet.idade === null || pet.idade === undefined) {
+                    idadeFormatada = 'Idade desconhecida';
+                } else if (pet.idade <= 0) {
+                    idadeFormatada = 'Recém-nascido';
+                } else if (pet.idade === 1) {
+                    idadeFormatada = '1 mês';
+                } else if (pet.idade < 12) {
+                    idadeFormatada = `${pet.idade} meses`;
+                } else {
+                    const anos = Math.floor(pet.idade / 12);
+                    if (anos === 1) {
+                        idadeFormatada = '1 ano';
+                    } else {
+                        idadeFormatada = `${anos} anos`;
+                    }
+                }
+
+                const nomeExibido = pet.nome || 'Pet sem nome';
+                const racaExibida = pet.raca || 'Raça desconhecida';
+
                 const card = document.createElement('article');
                 card.className = 'pet-card';
                 card.innerHTML = `
                     <div class="pet-card-topo">
-                        <img src="${imagemPet}" alt="Foto de ${pet.nome || pet.especie}" class="pet-card-img">
+                        <img src="${imagemPet}" alt="Foto de ${nomeExibido}" class="pet-card-img">
                     </div>
                     <div class="pet-card-corpo">
+                        <h3 style="margin: 0; color: var(--cor-primaria); font-family: var(--fonte-titulos); font-size: 1.4rem;">${nomeExibido}</h3>
+                        <p style="margin: 0.3rem 0 1rem 0; font-size: 0.95rem; color: var(--cor-card-pet); font-weight: 600;">${racaExibida} &bull; ${idadeFormatada}</p>
                         <div class="pet-detalhe"><span class="pet-label">Espécie:</span> <span class="pet-valor">${pet.especie}</span></div>
                         <div class="pet-detalhe"><span class="pet-label">Gênero:</span> <span class="pet-valor">${pet.genero || '—'}</span></div>
-                        <div class="pet-detalhe"><span class="pet-label">Cor:</span> <span class="pet-valor">${pet.cor}</span></div>
                         <div class="pet-detalhe-inline">
                             <span class="pet-label">Vermifugado:</span>
                             <span class="pet-valor">${pet.vermifugado || '—'}</span>
                             <span class="circulo-vermifugado ${classeBolinha}"></span>
                         </div>
-                        <div class="pet-detalhe"><span class="pet-label">Nome:</span> <span class="pet-valor">${pet.nome || '—'}</span></div>
                         <div class="pet-card-footer">
                             <a href="perfil-pet.html?id=${pet.idPet}" class="pet-btn-ver">Ver</a>
                         </div>
@@ -153,17 +205,44 @@
         document.addEventListener('DOMContentLoaded', () => {
             carregarPets();
 
+            // Toggle dos filtros avançados
+            const btnAvancados = document.getElementById('btn-filtros-avancados');
+            const drawerAvancados = document.getElementById('filtros-avancados-drawer');
+            btnAvancados.addEventListener('click', () => {
+                const aberto = drawerAvancados.classList.toggle('aberto');
+                btnAvancados.textContent = aberto ? '− Filtros Avançados' : '+ Filtros Avançados';
+            });
+
             document.getElementById('form-filtros').addEventListener('submit', (e) => {
                 e.preventDefault();
+
+                // Filtros básicos
                 const especie = document.getElementById('filtro-especie').value;
                 const genero = document.getElementById('filtro-genero').value;
                 const vermifugado = document.getElementById('filtro-vermifugado').value;
 
+                // Filtros avançados
+                const nome = document.getElementById('filtro-nome').value.trim().toLowerCase();
+                const raca = document.getElementById('filtro-raca').value.trim().toLowerCase();
+                const cor = document.getElementById('filtro-cor').value.trim().toLowerCase();
+                const idadeMinVal = document.getElementById('filtro-idade-min').value;
+                const idadeMaxVal = document.getElementById('filtro-idade-max').value;
+                
+                // Converte a busca do usuário de ANOS para MESES, para comparar com o DB
+                const idadeMinMeses = idadeMinVal !== '' ? parseInt(idadeMinVal, 10) * 12 : null;
+                const idadeMaxMeses = idadeMaxVal !== '' ? parseInt(idadeMaxVal, 10) * 12 : null;
+
                 const filtrados = todosOsPets.filter(pet => {
-                    const okEspecie = !especie || pet.especie === especie;
-                    const okGenero = !genero || pet.genero === genero;
+                    const okEspecie     = !especie     || pet.especie === especie;
+                    const okGenero      = !genero      || pet.genero === genero;
                     const okVermifugado = !vermifugado || pet.vermifugado === vermifugado;
-                    return okEspecie && okGenero && okVermifugado;
+                    const okNome        = !nome        || (pet.nome && pet.nome.toLowerCase().includes(nome));
+                    const okRaca        = !raca        || (pet.raca && pet.raca.toLowerCase().includes(raca));
+                    const okCor         = !cor         || (pet.cor && pet.cor.toLowerCase().includes(cor));
+                    const okIdadeMin    = idadeMinMeses === null || (pet.idade !== null && pet.idade >= idadeMinMeses);
+                    const okIdadeMax    = idadeMaxMeses === null || (pet.idade !== null && pet.idade <= idadeMaxMeses);
+
+                    return okEspecie && okGenero && okVermifugado && okNome && okRaca && okCor && okIdadeMin && okIdadeMax;
                 });
 
                 renderizarCards(filtrados);

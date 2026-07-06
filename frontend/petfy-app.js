@@ -10,70 +10,59 @@
 function initNavbar() {
     const role = localStorage.getItem('userRole');
     const dropdownContent = document.querySelector('.dropdown-content');
+    const profilePic = document.querySelector('.profile-pic');
+
+    // ── Profile Picture: pata.png para guest, foto real para logado ──────────
+    if (profilePic) {
+        if (role === null) {
+            profilePic.src = 'assets/pata.png';
+            profilePic.alt = 'Visitante';
+        } else if (role === 'admin') {
+            profilePic.src = 'assets/foto perfil admin.png';
+            profilePic.alt = 'Perfil Admin';
+        } else {
+            profilePic.src = 'assets/foto perfil comum.png';
+            profilePic.alt = 'Perfil do Usuário';
+        }
+        profilePic.style.display = 'block';
+    }
+
     if (!dropdownContent) return;
 
-    // Limpamos o conteúdo estático e reconstruímos dinamicamente
+    // Reconstrói o dropdown sem alterar as classes pai (.menu-container, .dropdown-menu)
     dropdownContent.innerHTML = '';
 
-    // Link "Início" sempre presente
-    const linkInicio = document.createElement('a');
-    linkInicio.href = 'index.html';
-    linkInicio.textContent = 'Início';
-    dropdownContent.appendChild(linkInicio);
-
     if (role === null) {
-        // Deslogado: mostra link de Login
+        // ── GUEST: apenas Login / Cadastro ───────────────────────────────────
         const linkLogin = document.createElement('a');
         linkLogin.href = 'login.html';
         linkLogin.textContent = 'Login / Cadastro';
         dropdownContent.appendChild(linkLogin);
 
-    } else if (role === 'user') {
-        // Usuário comum: mostra Conta e Sair
-        const linkConta = document.createElement('a');
-        linkConta.href = '#';
-        linkConta.textContent = 'Minha Conta';
-        dropdownContent.appendChild(linkConta);
-
-        const linkSair = document.createElement('a');
-        linkSair.href = '#';
-        linkSair.className = 'btn-sair';
-        linkSair.textContent = 'Sair';
-        linkSair.addEventListener('click', (e) => {
-            e.preventDefault();
-            fazerLogout();
-        });
-        dropdownContent.appendChild(linkSair);
-
-    } else if (role === 'admin') {
-        // Admin: mostra Painel Admin e Sair
-        const linkAdmin = document.createElement('a');
-        linkAdmin.href = 'admin.html';
-        linkAdmin.textContent = '⚙️ Painel Admin';
-        linkAdmin.style.fontWeight = 'bold';
-        dropdownContent.appendChild(linkAdmin);
-
-        const linkConta = document.createElement('a');
-        linkConta.href = '#';
-        linkConta.textContent = 'Minha Conta';
-        dropdownContent.appendChild(linkConta);
-
-        const linkSair = document.createElement('a');
-        linkSair.href = '#';
-        linkSair.className = 'btn-sair';
-        linkSair.textContent = 'Sair';
-        linkSair.addEventListener('click', (e) => {
-            e.preventDefault();
-            fazerLogout();
-        });
-        dropdownContent.appendChild(linkSair);
-
-        // Troca foto de perfil para a de admin
-        const profilePic = document.querySelector('.profile-pic');
-        if (profilePic) {
-            profilePic.src = 'assets/foto perfil admin.png';
-            profilePic.alt = 'Perfil Admin';
+    } else {
+        // ── LOGADO (user ou admin): Conta + Sair ─────────────────────────────
+        if (role === 'admin') {
+            const linkAdmin = document.createElement('a');
+            linkAdmin.href = 'admin.html';
+            linkAdmin.textContent = '⚙️ Painel Admin';
+            linkAdmin.style.fontWeight = 'bold';
+            dropdownContent.appendChild(linkAdmin);
         }
+
+        const linkConta = document.createElement('a');
+        linkConta.href = '#';
+        linkConta.textContent = 'Conta';
+        dropdownContent.appendChild(linkConta);
+
+        const linkSair = document.createElement('a');
+        linkSair.href = '#';
+        linkSair.className = 'btn-sair';
+        linkSair.textContent = 'Sair';
+        linkSair.addEventListener('click', (e) => {
+            e.preventDefault();
+            fazerLogout();
+        });
+        dropdownContent.appendChild(linkSair);
     }
 }
 

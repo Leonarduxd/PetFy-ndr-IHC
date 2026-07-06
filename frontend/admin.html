@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy(ndr)" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <!-- Preenchido dinamicamente por petfy-app.js -->
+                        <!-- Preenchido dinamicamente por js/auth-navbar.js -->
                     </div>
                 </div>
             </div>
@@ -77,9 +77,8 @@
                         class="form-input-admin">
                 </div>
                 <div class="form-group-admin">
-                    <label for="idade" class="form-label-admin">Idade (anos)</label>
-                    <input type="number" id="idade" name="idade" min="0" placeholder="Ex: 2"
-                        class="form-input-admin">
+                    <label for="idade" class="form-label-admin">Idade (em meses)</label>
+                    <input type="number" id="idade" name="idade" min="0" placeholder="Ex: 4 (para 4 meses) ou 24 (para 2 anos)" class="form-input-admin">
                 </div>
                 <div class="form-group-admin">
                     <label for="vermifugado" class="form-label-admin">Vermifugado</label>
@@ -132,13 +131,13 @@
 
     <footer class="rodape">
         <div class="rodape-conteudo">
-            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+            <p class="rodape-texto">&copy; 2026 PetFy(ndr). Todos os direitos reservados. Desenvolvido para facilitar a
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
 
     <!-- Script compartilhado: Auth + Navbar dinâmica -->
-    <script src="petfy-app.js"></script>
+    <script src="js/auth-navbar.js"></script>
 
     <!-- Módulo 4: Admin Dashboard CRUD -->
     <script>
@@ -183,13 +182,53 @@
                             <td>${nomeExibido}</td>
                             <td>${pet.especie}</td>
                             <td><span class="status-badge ${statusClass}">${pet.status}</span></td>
-                            <td>
+                            <td class="admin-acoes-td">
+                                ${pet.status === 'Adotado'
+                                    ? `<button type="button" class="admin-btn-disponivel" data-id="${pet.idPet}">Tornar Disponível</button>`
+                                    : ''
+                                }
                                 <button type="button" class="admin-btn-excluir" data-id="${pet.idPet}">
                                     Deletar
                                 </button>
                             </td>
                         `;
                         tbody.appendChild(tr);
+                    });
+
+                    // Event delegation para botão de "Tornar Disponível"
+                    tbody.querySelectorAll('.admin-btn-disponivel').forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const idPet = btn.dataset.id;
+                            try {
+                                const respostaPut = await fetch(`http://localhost:3000/pets/${idPet}`, {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ status: 'Disponível' })
+                                });
+
+                                if (respostaPut.ok) {
+                                    // Atualiza o DOM imediatamente sem recarregar
+                                    const linha = document.querySelector(`tr[data-pet-id="${idPet}"]`);
+                                    if (linha) {
+                                        const badgeEl = linha.querySelector('.status-badge');
+                                        if (badgeEl) {
+                                            badgeEl.textContent = 'Disponível';
+                                            badgeEl.classList.remove('adotado');
+                                            badgeEl.classList.add('ativo');
+                                        }
+                                        // Remove o botão "Tornar Disponível" da linha
+                                        btn.remove();
+                                    }
+                                    mostrarModal('Status Atualizado! 🐾', `Pet ID ${idPet} está novamente disponível para adoção.`);
+                                } else {
+                                    const erro = await respostaPut.json();
+                                    mostrarModal('Erro', erro.erro || 'Não foi possível atualizar o status.');
+                                }
+                            } catch (erroRede) {
+                                console.error('Erro ao reverter status:', erroRede);
+                                mostrarModal('Servidor Offline', 'Não foi possível conectar ao servidor.');
+                            }
+                        });
                     });
 
                     // Event delegation para os botões de deletar
@@ -243,7 +282,7 @@
                     genero: formCadastrar.genero.value,
                     raca: formCadastrar.raca.value.trim(),
                     cor: formCadastrar.cor.value.trim(),
-                    idade: formCadastrar.idade.value ? parseInt(formCadastrar.idade.value) : null,
+                    idade: formCadastrar.idade.value ? parseInt(formCadastrar.idade.value, 10) : null,
                     vermifugado: formCadastrar.vermifugado.value,
                     personalidade: formCadastrar.personalidade.value.trim(),
                     imagem: formCadastrar.imagem.value.trim(),

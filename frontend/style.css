@@ -208,11 +208,23 @@ header {
    UTILITÁRIO TEXTURA PATAS E CONTEÚDO
    ========================================= */
 .bg-textura-patas {
-    background-color: var(--cor-primaria);
+    /* 1. O TRUQUE DE CONTRASTE (Fundo): 
+       Em vez de usar exatamente a --cor-primaria, nós clareamos ou escurecemos 
+       ligeiramente a base para forçar o PNG a se destacar. 
+       Tente #7A4D2E (mais claro) ou #52311B (mais escuro). */
+    background-color: #7A4D2E;
+
+    /* 2. O ARQUIVO E ESCALA: Mantenha os seus 800px gloriosos (ou teste 1000px) */
     background-image: url('assets/textura patas.png');
     background-repeat: repeat;
-    background-size: 250px;
-    background-blend-mode: soft-light;
+    background-size: 1000px;
+
+    /* 3. O SEGREDO DO DESTAQUE (Blend Mode): 
+       Este é o seu "slider" de intensidade. Se 'overlay' ficou tímido demais, teste estes:
+       - hard-light : Aumenta drasticamente o contraste das patinhas.
+       - multiply   : Força as patinhas a ficarem bem mais escuras e marcadas.
+       - color-dodge: Dá um efeito de "brilho/carimbo" acendendo a textura. */
+    background-blend-mode: hard-light;
 }
 
 .conteudo-principal {
@@ -1566,4 +1578,173 @@ header {
     .admin-tabela td {
         padding: 0.8rem;
     }
+}
+
+/* =========================================
+   MÓDULO 2: FILTROS AVANÇADOS (adotar.html)
+   ========================================= */
+
+/* Wrapper para a linha de filtros básicos (com os selects + botões) */
+.filtros-basicos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Gaveta de Filtros Avançados — oculta por padrão, anima ao abrir */
+.filtros-avancados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding-top 0.3s ease;
+    padding-top: 0;
+    border-top: none;
+}
+
+.filtros-avancados.aberto {
+    max-height: 300px;
+    opacity: 1;
+    padding-top: 1.5rem;
+    border-top: 1px dashed #E0D5C1;
+    margin-top: 0.5rem;
+}
+
+/* Input de texto para filtros avançados */
+.filtro-input {
+    font-family: var(--fonte-textos);
+    padding: 0.8rem 1rem;
+    border: 2px solid #E0D5C1;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #FAF6EE;
+    color: var(--cor-texto-escuro);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.filtro-input:focus {
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 3px rgba(205, 133, 63, 0.2);
+}
+
+/* Input number pequeno para faixa de idade */
+.filtro-input-num {
+    max-width: 90px;
+    text-align: center;
+    padding: 0.8rem 0.6rem;
+}
+
+/* Container para os dois inputs de idade (De / Até) */
+.filtro-idade-range {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.filtro-ate {
+    font-family: var(--fonte-textos);
+    font-size: 0.9rem;
+    color: #888;
+    white-space: nowrap;
+}
+
+/* Botão "+" para revelar filtros avançados */
+.filtro-btn-avancados {
+    font-family: var(--fonte-textos);
+    background-color: transparent;
+    color: var(--cor-secundaria);
+    border: 2px solid var(--cor-secundaria);
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.filtro-btn-avancados:hover {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+}
+
+.filtro-btn-avancados:active {
+    transform: scale(0.97);
+}
+
+/* =========================================
+   MÓDULO 3: IDENTIDADE DO PET (perfil-pet.html)
+   ========================================= */
+
+/* Bloco de identidade: Nome + Subtítulo (Raça • Idade) */
+.pet-perfil-identidade {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Subtítulo com raça e idade formatada */
+.pet-perfil-subtitulo {
+    font-family: var(--fonte-textos);
+    font-size: 1.1rem;
+    color: var(--cor-card-pet);
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+/* =========================================
+   MÓDULO 4: BOTÃO "TORNAR DISPONÍVEL" (admin.html)
+   ========================================= */
+
+/* Célula de ações com gap para múltiplos botões */
+.admin-acoes-td {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+/* Botão verde de reverter status */
+.admin-btn-disponivel {
+    font-family: var(--fonte-titulos);
+    background-color: var(--cor-sucesso);
+    color: var(--cor-branca);
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+}
+
+.admin-btn-disponivel:hover {
+    background-color: #43A047;
+}
+
+.admin-btn-disponivel:active {
+    transform: scale(0.95);
+}
+
+/* =========================================
+   MÓDULO 1: PROFILE PIC OCULTA (logged-out)
+   ========================================= */
+
+/* Quando a foto de perfil está oculta, remove o espaço dela */
+.profile-pic[style*="display: none"] {
+    margin: 0;
+    padding: 0;
 }

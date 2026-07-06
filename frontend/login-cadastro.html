@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy(ndr)" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <!-- Preenchido dinamicamente por petfy-app.js -->
+                        <!-- Preenchido dinamicamente por js/auth-navbar.js -->
                     </div>
                 </div>
             </div>
@@ -89,24 +89,19 @@
 
     <footer class="rodape">
         <div class="rodape-conteudo">
-            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+            <p class="rodape-texto">&copy; 2026 PetFy(ndr). Todos os direitos reservados. Desenvolvido para facilitar a
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
 
     <!-- Script compartilhado: Auth + Navbar dinâmica -->
-    <script src="petfy-app.js"></script>
+    <script src="js/auth-navbar.js"></script>
 
     <!-- Módulo 1: Lógica de Cadastro & Definição de Papel -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Se já está logado, redireciona direto
-            if (localStorage.getItem('userRole')) {
-                window.location.href = 'index.html';
-                return;
-            }
-
             const formCadastro = document.getElementById('form-cadastro');
+
             formCadastro.addEventListener('submit', (e) => {
                 e.preventDefault();
 

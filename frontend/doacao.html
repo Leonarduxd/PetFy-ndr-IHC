@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy(ndr)" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <!-- Preenchido dinamicamente por petfy-app.js -->
+                        <!-- Preenchido dinamicamente por js/auth-navbar.js -->
                     </div>
                 </div>
             </div>
@@ -149,13 +149,13 @@
 
     <footer class="rodape">
         <div class="rodape-conteudo">
-            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+            <p class="rodape-texto">&copy; 2026 PetFy(ndr). Todos os direitos reservados. Desenvolvido para facilitar a
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
 
     <!-- Script compartilhado: Auth + Navbar dinâmica -->
-    <script src="petfy-app.js"></script>
+    <script src="js/auth-navbar.js"></script>
 
     <!-- Módulo 4: Interceptação do formulário de doação -->
     <script>
@@ -164,6 +164,16 @@
 
             formDoacao.addEventListener('submit', (e) => {
                 e.preventDefault();
+
+                // Guard: verifica se está logado antes de processar a doação
+                if (!localStorage.getItem('userRole')) {
+                    mostrarModal(
+                        'Acesso Restrito 🐾',
+                        'Você precisa estar logado para realizar esta ação!',
+                        () => { window.location.href = 'login.html'; }
+                    );
+                    return;
+                }
 
                 // Validação: campo de quantia preenchido
                 const quantia = formDoacao.querySelector('input[name="quantia"]').value.trim();
@@ -182,7 +192,7 @@
                 // Exibe modal de agradecimento e reseta o formulário
                 mostrarModal(
                     'Obrigado pela sua doação! 💛',
-                    'Obrigado por doar e apoiar o Petfy(ndr)! Sua contribuição faz a diferença na vida de muitos animais.',
+                    'Obrigado por doar e apoiar o PetFy(ndr)! Sua contribuição faz a diferença na vida de muitos animais.',
                     () => { formDoacao.reset(); }
                 );
             });

@@ -12,7 +12,7 @@
     <header class="cabecalho">
         <div class="cabecalho-logo">
             <a href="index.html">
-                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy" class="logo-img">
+                <img src="assets/logo PetFy(ndr).png" alt="Logo PetFy(ndr)" class="logo-img">
             </a>
         </div>
         <nav class="cabecalho-navegacao">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
-                        <!-- Preenchido dinamicamente por petfy-app.js -->
+                        <!-- Preenchido dinamicamente por js/auth-navbar.js -->
                     </div>
                 </div>
             </div>
@@ -51,8 +51,8 @@
                 <h2 class="cadastro-titulo">Login</h2>
                 <form id="form-login" class="cadastro-form">
                     <div class="form-group">
-                        <label for="usuario" class="form-label">Usuário</label>
-                        <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required
+                        <label for="usuario" class="form-label">E-mail</label>
+                        <input type="email" id="usuario" name="usuario" placeholder="Digite seu e-mail (ex: nome@dominio.com)" required
                             class="form-input">
                     </div>
                     <div class="form-group">
@@ -78,24 +78,18 @@
 
     <footer class="rodape">
         <div class="rodape-conteudo">
-            <p class="rodape-texto">&copy; 2026 PetFy. Todos os direitos reservados. Desenvolvido para facilitar a
+            <p class="rodape-texto">&copy; 2026 PetFy(ndr). Todos os direitos reservados. Desenvolvido para facilitar a
                 adoção e o cuidado animal.</p>
         </div>
     </footer>
 
     <!-- Script compartilhado: Auth + Navbar dinâmica -->
-    <script src="petfy-app.js"></script>
+    <script src="js/auth-navbar.js"></script>
 
-    <!-- Módulo 1: Lógica de Login & Definição de Papel -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Se já está logado, redireciona direto
-            if (localStorage.getItem('userRole')) {
-                window.location.href = 'index.html';
-                return;
-            }
-
             const formLogin = document.getElementById('form-login');
+
             formLogin.addEventListener('submit', (e) => {
                 e.preventDefault();
 
@@ -103,12 +97,19 @@
                 const senha = document.getElementById('senha').value;
 
                 if (!usuario || !senha) {
-                    mostrarModal('Campos Obrigatórios', 'Por favor, preencha usuário e senha.');
+                    mostrarModal('Campos Obrigatórios', 'Por favor, preencha e-mail e senha.');
                     return;
                 }
 
-                // Regra de admin: email/usuário contém 'admin@petfy' ou é exatamente 'admin'
-                if (usuario.includes('admin@petfy') || usuario === 'admin') {
+                // Validação de formato de e-mail
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(usuario)) {
+                    mostrarModal('E-mail Inválido', 'Por favor, insira um endereço de e-mail válido (ex: nome@dominio.com).');
+                    return;
+                }
+
+                // Regra de admin: e-mail contém 'admin@petfy' ou inicia com 'admin'
+                if (usuario.includes('admin@petfy') || usuario.startsWith('admin')) {
                     localStorage.setItem('userRole', 'admin');
                 } else {
                     localStorage.setItem('userRole', 'user');
